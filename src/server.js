@@ -21,8 +21,8 @@ const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
         origin: '*',
-        methods: ['GET', 'POST']
-    }
+        methods: ['GET', 'POST'],
+    },
 });
 
 const PORT = process.env.PORT || 3000;
@@ -39,25 +39,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
-// ==================== CONFIGURAR HANDLEBARS ====================
-app.engine('hbs', engine({
-    extname: '.hbs',
-    defaultLayout: false,
-    helpers: {
-        json: function(context) {
-            return JSON.stringify(context).replace(/"/g, '&quot;');
+// ==================== CONFIGURACION DE HANDLEBARS ====================
+app.engine(
+    'hbs',
+    engine({
+        extname: '.hbs',
+        defaultLayout: false,
+        partialsDir: __dirname + '/views/partials', // carpeta donde están los partials
+        helpers: {
+            json: (context) => JSON.stringify(context).replace(/"/g, '&quot;'),
+            gt: (a, b) => a > b,
+            lt: (a, b) => a < b,
+            eq: (a, b) => a === b,
         },
-        gt: function(a, b) {
-            return a > b;
-        },
-        lt: function(a, b) {
-            return a < b;
-        },
-        eq: function(a, b) {
-            return a === b;
-        }
-    }
-}));
+    })
+);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -112,7 +108,7 @@ io.on('productDeleted', () => {
 
 // ==================== INICIAR SERVIDOR ====================
 server.listen(PORT, () => {
-    console.log(`\n🚀 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`\n🚀 Servidor corriendo en el puerto: ${PORT}`);
     console.log(`📱 Vista de productos: http://localhost:${PORT}/`);
     console.log(`🔄 Productos en tiempo real: http://localhost:${PORT}/realtimeproducts\n`);
 });
