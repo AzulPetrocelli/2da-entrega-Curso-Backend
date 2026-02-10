@@ -1,27 +1,27 @@
 {
-  "name": "product-management-system",
-  "version": "1.0.0",
-  "description": "Sistema de gestión de productos con WebSockets y tiempo real",
-  "type": "module",
-  "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
-  },
-  "keywords": [
-    "express",
-    "handlebars",
-    "websockets",
-    "socket.io"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2",
-    "express-handlebars": "^7.1.2",
-    "socket.io": "^4.6.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.2"
-  }
+    "name": "product-management-system",
+    "version": "1.0.0",
+    "description": "Sistema de gestión de productos con WebSockets y tiempo real",
+    "type": "module",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
+    },
+    "keywords": [
+        "express",
+        "handlebars",
+        "websockets",
+        "socket.io"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.2",
+        "express-handlebars": "^7.1.2",
+        "socket.io": "^4.6.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    }
 }

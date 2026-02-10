@@ -22,6 +22,7 @@ Sistema completo de gestión de productos en tiempo real usando Node.js, Express
 1. **Descargar o clonar el proyecto**
 
 2. **Instalar dependencias**
+
 ```bash
 npm install
 ```
@@ -47,14 +48,20 @@ proyecto/
 │   └── views/
 │       ├── home.hbs              # Vista principal (catálogo)
 │       ├── realTimeProducts.hbs  # Vista con actualizaciones en tiempo real
-│       └── products.hbs          # Vista antigua (opcional)
+        └── partials/
+│           ├── card.hbs              # Vista de la card
+│           ├── alert.hbs             # Vista del mensaje de alerta (error o exito)
+│           └── addProductModal.hbs   # Modal con formulario para agregar producto
 │
 ├── public/
-│   └── js/
-│       └── realtimeProducts.js   # Lógica cliente para realTimeProducts
+│     ├── css/
+│     │   └──  animations.css       # Animaciones de css
+│     └── js/
+│         └── realtimeProducts.js   # Lógica cliente para realTimeProducts
 │
 ├── package.json                  # Dependencias
 ├── .gitignore                    # Archivos ignorados por git
+├── .prettierrc                   # Como ordenar el codigo
 └── README.md                     # Este archivo
 ```
 
@@ -63,11 +70,13 @@ proyecto/
 ### Iniciar el servidor
 
 **Modo producción:**
+
 ```bash
 npm start
 ```
 
 **Modo desarrollo (con auto-reload):**
+
 ```bash
 npm run dev
 ```
@@ -77,51 +86,52 @@ npm run dev
 Una vez que el servidor esté corriendo en http://localhost:3000:
 
 1. **Vista Home** - http://localhost:3000/
-   - Catálogo estático de todos los productos
-   - Solo lectura
-   - Perfecta para ver todos los productos disponibles
+    - Catálogo estático de todos los productos
+    - Solo lectura
+    - Perfecta para ver todos los productos disponibles
 
 2. **Vista Real-Time Products** - http://localhost:3000/realtimeproducts
-   - Gestión completa de productos con WebSockets
-   - Crear nuevos productos
-   - Eliminar productos existentes
-   - Actualizaciones automáticas en tiempo real
-   - Múltiples usuarios ven cambios simultáneamente
+    - Gestión completa de productos con WebSockets
+    - Crear nuevos productos
+    - Eliminar productos existentes
+    - Actualizaciones automáticas en tiempo real
+    - Múltiples usuarios ven cambios simultáneamente
 
 ## 📡 API REST Endpoints
 
 ### Productos
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| GET | `/api/products` | Obtener todos los productos |
-| GET | `/api/products?limit=10` | Obtener productos con límite |
-| GET | `/api/products/:pid` | Obtener producto por ID |
-| POST | `/api/products` | Crear nuevo producto |
-| PATCH | `/api/products/:pid` | Actualizar producto |
-| DELETE | `/api/products/:pid` | Eliminar producto |
+| Método | Endpoint                 | Descripción                  |
+| ------ | ------------------------ | ---------------------------- |
+| GET    | `/api/products`          | Obtener todos los productos  |
+| GET    | `/api/products?limit=10` | Obtener productos con límite |
+| GET    | `/api/products/:pid`     | Obtener producto por ID      |
+| POST   | `/api/products`          | Crear nuevo producto         |
+| PATCH  | `/api/products/:pid`     | Actualizar producto          |
+| DELETE | `/api/products/:pid`     | Eliminar producto            |
 
 **Ejemplo POST/PATCH:**
+
 ```json
 {
-  "title": "Laptop",
-  "description": "Laptop gaming de alta gama",
-  "price": 1500.00,
-  "stock": 5,
-  "code": "LAP001",
-  "category": "Electrónica",
-  "thumbnails": "https://...",
-  "status": true
+    "title": "Laptop",
+    "description": "Laptop gaming de alta gama",
+    "price": 1500.0,
+    "stock": 5,
+    "code": "LAP001",
+    "category": "Electrónica",
+    "thumbnails": "https://...",
+    "status": true
 }
 ```
 
 ### Carritos
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| POST | `/api/carts` | Crear carrito |
-| GET | `/api/carts/:cid` | Obtener carrito |
-| POST | `/api/carts/:cid/product/:pid` | Agregar producto a carrito |
+| Método | Endpoint                       | Descripción                |
+| ------ | ------------------------------ | -------------------------- |
+| POST   | `/api/carts`                   | Crear carrito              |
+| GET    | `/api/carts/:cid`              | Obtener carrito            |
+| POST   | `/api/carts/:cid/product/:pid` | Agregar producto a carrito |
 
 ## WebSocket Events
 
@@ -133,14 +143,14 @@ socket.emit('getProducts');
 
 // Crear nuevo producto
 socket.emit('createProduct', {
-    title: "Producto",
-    description: "Descripción",
+    title: 'Producto',
+    description: 'Descripción',
     price: 100,
     stock: 10,
-    code: "CODE123",
-    category: "Categoría",
-    thumbnails: "url",
-    status: true
+    code: 'CODE123',
+    category: 'Categoría',
+    thumbnails: 'url',
+    status: true,
 });
 
 // Eliminar producto
@@ -171,39 +181,44 @@ socket.on('error', (message) => {});
 
 ## 🏗️ Cómo funciona el flujo en tiempo real
 
-1. **Usuario abre realTimeProducts** 
-   - Socket se conecta automáticamente
+1. **Usuario abre realTimeProducts**
+    - Socket se conecta automáticamente
 
-2. **Cliente solicita productos** 
-   - Servidor envía listado inicial
+2. **Cliente solicita productos**
+    - Servidor envía listado inicial
 
 3. **Usuario crea/elimina producto**:
-   - Emite evento por WebSocket
-   - Servidor procesa en ProductManager
-   - ProductManager emite a TODOS los clientes
-   - DOM se actualiza automáticamente en cada cliente
-   - Cambios se persisten en JSON
+    - Emite evento por WebSocket
+    - Servidor procesa en ProductManager
+    - ProductManager emite a TODOS los clientes
+    - DOM se actualiza automáticamente en cada cliente
+    - Cambios se persisten en JSON
 
 4. **Persistencia**
-   - Los cambios se guardan automáticamente en db/products.json
+    - Los cambios se guardan automáticamente en db/products.json
 
 ## 🏗️ Arquitectura
 
 ### ProductManager
+
 Clase responsable de la gestión de productos:
+
 - ✅ Validar datos de entrada
 - ✅ Crear, leer, actualizar, eliminar productos
 - ✅ Emitir eventos Socket.io cuando ocurren cambios
 - ✅ Persistencia en JSON
 
 ### SocketEvents
+
 Configuración centralizada de eventos Socket.io:
+
 - Maneja conexiones y desconexiones
 - Delega operaciones al ProductManager
 - Emite eventos a todos los clientes conectados
 - Manejo de errores
 
 ### Rutas
+
 - API REST bien definidas
 - Persistencia en archivo JSON
 - Integración con managers
@@ -228,14 +243,17 @@ Configuración centralizada de eventos Socket.io:
 ## 🐛 Troubleshooting
 
 **Problema**: El servidor no inicia
+
 - Verifica que el puerto 3000 esté disponible
 - Ejecuta `npm install` para instalar dependencias
 
 **Problema**: Los cambios no aparecen en tiempo real
+
 - Verifica la conexión WebSocket en la consola del navegador
 - Recarga la página
 
 **Problema**: Los datos no se persisten
+
 - Verifica que `/src/db/` existe y tiene permisos de escritura
 - Comprueba que los archivos JSON tienen formato válido
 

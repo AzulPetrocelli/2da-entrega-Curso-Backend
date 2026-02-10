@@ -1,5 +1,5 @@
 // Configurar eventos de Socket.io
-export function configureSocketEvents(io, productManager) {
+export const configureSocketEvents = (io, productManager) => {
     io.on('connection', (socket) => {
         console.log('Cliente conectado:', socket.id);
 
@@ -48,4 +48,4 @@ export function configureSocketEvents(io, productManager) {
             console.log('Cliente desconectado:', socket.id);
         });
     });
-}
+};

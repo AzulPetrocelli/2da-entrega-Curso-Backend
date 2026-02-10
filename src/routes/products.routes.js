@@ -20,14 +20,14 @@ const productManager = new ProductManager(products);
 // Obtener todos los productos
 router.get('/', (req, res) => {
     const allProducts = productManager.getProducts();
-    
+
     // Si se solicita con query de límite
     const limit = req.query.limit ? parseInt(req.query.limit) : null;
-    
+
     if (limit) {
         return res.json(allProducts.slice(0, limit));
     }
-    
+
     res.json(allProducts);
 });
 
@@ -35,11 +35,11 @@ router.get('/', (req, res) => {
 router.get('/:pid', (req, res) => {
     const { pid } = req.params;
     const product = productManager.getProductById(parseInt(pid));
-    
+
     if (!product) {
         return res.status(404).json({ error: 'Producto no encontrado' });
     }
-    
+
     res.json(product);
 });
 
@@ -48,14 +48,14 @@ router.get('/:pid', (req, res) => {
 // Crear nuevo producto
 router.post('/', (req, res) => {
     const result = productManager.addProduct(req.body);
-    
+
     if (result.error) {
         return res.status(result.status).json({ error: result.error });
     }
-    
+
     // Guardar en archivo
     fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-    
+
     res.status(result.status).json(result.product);
 });
 
@@ -65,14 +65,14 @@ router.post('/', (req, res) => {
 router.patch('/:pid', (req, res) => {
     const { pid } = req.params;
     const result = productManager.patchProduct(parseInt(pid), req.body);
-    
+
     if (result.error) {
         return res.status(result.status).json({ error: result.error });
     }
-    
+
     // Guardar en archivo
     fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-    
+
     res.status(result.status).json(result.product);
 });
 
@@ -82,17 +82,17 @@ router.patch('/:pid', (req, res) => {
 router.delete('/:pid', (req, res) => {
     const { pid } = req.params;
     const result = productManager.deleteProduct(parseInt(pid));
-    
+
     if (result.error) {
         return res.status(result.status).json({ error: result.error });
     }
-    
+
     // Guardar en archivo
     fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-    
-    res.status(result.status).json({ 
+
+    res.status(result.status).json({
         message: 'Producto eliminado exitosamente',
-        product: result.product 
+        product: result.product,
     });
 });
 

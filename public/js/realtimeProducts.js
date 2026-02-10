@@ -69,7 +69,7 @@ socket.on('error', (errorMsg) => {
 
 // ==================== FUNCIONES DE PRODUCTOS ====================
 
-function renderProducts(products) {
+const renderProducts = (products) => {
     if (!products || products.length === 0) {
         productsContainer.innerHTML = `
             <div class="col-span-full text-center py-12">
@@ -84,9 +84,9 @@ function renderProducts(products) {
     products.forEach((product) => {
         addProductToDOM(product);
     });
-}
+};
 
-function addProductToDOM(product) {
+const addProductToDOM = (product) => {
     // No agregar si ya existe
     if (document.querySelector(`[data-product-id="${product.id}"]`)) {
         return;
@@ -98,17 +98,17 @@ function addProductToDOM(product) {
     // Animar la tarjeta nueva
     const card = document.querySelector(`[data-product-id="${product.id}"]`);
     card.style.animation = 'fadeIn 0.3s ease-in';
-}
+};
 
-function updateProductInDOM(product) {
+const updateProductInDOM = (product) => {
     const card = document.querySelector(`[data-product-id="${product.id}"]`);
     if (card) {
         const newCard = createProductCard(product);
         card.outerHTML = newCard;
     }
-}
+};
 
-function removeProductFromDOM(productId) {
+const removeProductFromDOM = (productId) => {
     const card = document.querySelector(`[data-product-id="${productId}"]`);
     if (card) {
         card.style.animation = 'fadeOut 0.3s ease-out';
@@ -125,9 +125,9 @@ function removeProductFromDOM(productId) {
             }
         }, 300);
     }
-}
+};
 
-function createProductCard(product) {
+const createProductCard = (product) => {
     const stockColor = product.stock > 10 ? 'text-green-400' : 'text-red-400';
     const statusColor = product.status ? 'bg-green-500' : 'bg-red-500';
     const statusText = product.status ? 'Activo' : 'Inactivo';
@@ -186,20 +186,20 @@ function createProductCard(product) {
             </div>
         </div>
     `;
-}
+};
 
 // ==================== FUNCIONES MODALES ====================
 
-function openCreateModal() {
+const openCreateModal = () => {
     createModal.classList.remove('hidden');
     createModal.classList.add('flex');
-}
+};
 
-function closeCreateModal() {
+const closeCreateModal = () => {
     createModal.classList.add('hidden');
     createModal.classList.remove('flex');
     createProductForm.reset();
-}
+};
 
 // Cerrar modal al hacer click fuera
 createModal.addEventListener('click', (e) => {
@@ -231,14 +231,14 @@ createProductForm.addEventListener('submit', (e) => {
     closeCreateModal();
 });
 
-function deleteProduct(productId) {
+const deleteProduct = (productId) => {
     if (confirm('¿Eliminar este producto?')) {
         socket.emit('deleteProduct', productId);
     }
-}
+};
 
 // ==================== FUNCIONES DE MENSAJES ====================
-function showAlert(type, text) {
+const showAlert = (type, text) => {
     const alert = document.getElementById('alertMessage');
     alert.querySelector('#alertText').textContent = text;
     alert.classList.remove('hidden');
@@ -251,9 +251,9 @@ function showAlert(type, text) {
         alert.classList.add('hidden');
         alert.classList.remove('flex');
     }, 3000);
-}
+};
 
-function updateConnectionStatus(connected) {
+const updateConnectionStatus = (connected) => {
     if (connected) {
         connectionStatus.className = 'inline-flex items-center gap-2 px-4 py-2 bg-green-900 text-green-200 rounded-lg';
         connectionStatus.innerHTML = `
@@ -267,39 +267,4 @@ function updateConnectionStatus(connected) {
             Desconectado del servidor
         `;
     }
-}
-
-// ==================== ANIMACIONES CSS ====================
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-    }
-
-    .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-`;
-document.head.appendChild(style);
+};
