@@ -32,19 +32,19 @@ socket.on('loadProducts', (products) => {
 // Escuchar cuando se crea un producto
 socket.on('productCreated', (product) => {
     addProductToDOM(product);
-    showSuccessMessage(`Producto "${product.title}" agregado`);
+    showAlert('success', `Producto "${product.title}" agregado`);
 });
 
 // Escuchar cuando se actualiza un producto
 socket.on('productUpdated', (product) => {
     updateProductInDOM(product);
-    showSuccessMessage(`Producto "${product.title}" actualizado`);
+    showAlert('success', `Producto "${product.title}" actualizado`);
 });
 
 // Escuchar cuando se elimina un producto
 socket.on('productDeleted', (productId) => {
     removeProductFromDOM(productId);
-    showSuccessMessage('Producto eliminado');
+    showAlert('success', 'Producto eliminado');
 });
 
 // Confirmaciones del servidor
@@ -64,7 +64,7 @@ socket.on('productDeletedConfirm', (productId) => {
 
 // Manejo de errores
 socket.on('error', (errorMsg) => {
-    showErrorMessage(errorMsg);
+    showAlert('error', errorMsg);
 });
 
 // ==================== FUNCIONES DE PRODUCTOS ====================
@@ -81,7 +81,7 @@ function renderProducts(products) {
     }
 
     productsContainer.innerHTML = '';
-    products.forEach(product => {
+    products.forEach((product) => {
         addProductToDOM(product);
     });
 }
@@ -136,9 +136,10 @@ function createProductCard(product) {
         <div class="product-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105" data-product-id="${product.id}">
             <!-- Product Image -->
             <div class="relative h-48 bg-gray-700 overflow-hidden">
-                ${product.thumbnails ? 
-                    `<img src="${product.thumbnails}" alt="${product.title}" class="w-full h-full object-cover">` : 
-                    `<div class="w-full h-full flex items-center justify-center bg-gray-700">
+                ${
+                    product.thumbnails
+                        ? `<img src="${product.thumbnails}" alt="${product.title}" class="w-full h-full object-cover">`
+                        : `<div class="w-full h-full flex items-center justify-center bg-gray-700">
                         <i class="fas fa-image text-gray-600 text-3xl"></i>
                     </div>`
                 }
@@ -221,7 +222,7 @@ createProductForm.addEventListener('submit', (e) => {
         code: formData.get('code'),
         category: formData.get('category'),
         thumbnails: formData.get('thumbnails') || null,
-        status: formData.get('status') ? true : false
+        status: formData.get('status') ? true : false,
     };
 
     // Enviar producto a través de websocket
@@ -237,29 +238,19 @@ function deleteProduct(productId) {
 }
 
 // ==================== FUNCIONES DE MENSAJES ====================
+function showAlert(type, text) {
+    const alert = document.getElementById('alertMessage');
+    alert.querySelector('#alertText').textContent = text;
+    alert.classList.remove('hidden');
 
-function showSuccessMessage(text) {
-    const successMsg = document.getElementById('successMessage');
-    document.getElementById('successText').textContent = text;
-    successMsg.classList.remove('hidden');
-    successMsg.classList.add('flex');
+    //Manejo los estilos según el tipo de mensaje
+    alert.classList.add('flex', type === 'success' ? 'bg-green-500' : 'bg-red-500');
+    alert.querySelector('#alertMessage > i').className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
 
     setTimeout(() => {
-        successMsg.classList.add('hidden');
-        successMsg.classList.remove('flex');
+        alert.classList.add('hidden');
+        alert.classList.remove('flex');
     }, 3000);
-}
-
-function showErrorMessage(text) {
-    const errorMsg = document.getElementById('errorMessage');
-    document.getElementById('errorText').textContent = text;
-    errorMsg.classList.remove('hidden');
-    errorMsg.classList.add('flex');
-
-    setTimeout(() => {
-        errorMsg.classList.add('hidden');
-        errorMsg.classList.remove('flex');
-    }, 5000);
 }
 
 function updateConnectionStatus(connected) {
