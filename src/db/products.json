@@ -8,7 +8,9 @@
         "status": true,
         "stock": 45,
         "category": "Periféricos",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?gaming,mouse](https://source.unsplash.com/600x600/?gaming,mouse)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?gaming,mouse](https://source.unsplash.com/600x600/?gaming,mouse)"
+        ]
     },
     {
         "id": 2,
@@ -19,7 +21,9 @@
         "status": true,
         "stock": 30,
         "category": "Periféricos",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?mechanical,keyboard](https://source.unsplash.com/600x600/?mechanical,keyboard)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?mechanical,keyboard](https://source.unsplash.com/600x600/?mechanical,keyboard)"
+        ]
     },
     {
         "id": 3,
@@ -30,7 +34,9 @@
         "status": true,
         "stock": 20,
         "category": "Audio",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?gaming,headset](https://source.unsplash.com/600x600/?gaming,headset)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?gaming,headset](https://source.unsplash.com/600x600/?gaming,headset)"
+        ]
     },
     {
         "id": 4,
@@ -41,7 +47,9 @@
         "status": true,
         "stock": 12,
         "category": "Monitores",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?computer,monitor](https://source.unsplash.com/600x600/?computer,monitor)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?computer,monitor](https://source.unsplash.com/600x600/?computer,monitor)"
+        ]
     },
     {
         "id": 5,
@@ -52,7 +60,9 @@
         "status": true,
         "stock": 5,
         "category": "Computadoras",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?gaming,laptop](https://source.unsplash.com/600x600/?gaming,laptop)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?gaming,laptop](https://source.unsplash.com/600x600/?gaming,laptop)"
+        ]
     },
     {
         "id": 6,
@@ -63,7 +73,9 @@
         "status": true,
         "stock": 80,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?mouse,pad](https://source.unsplash.com/600x600/?mouse,pad)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?mouse,pad](https://source.unsplash.com/600x600/?mouse,pad)"
+        ]
     },
     {
         "id": 7,
@@ -74,7 +86,9 @@
         "status": true,
         "stock": 25,
         "category": "Video",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?webcam](https://source.unsplash.com/600x600/?webcam)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?webcam](https://source.unsplash.com/600x600/?webcam)"
+        ]
     },
     {
         "id": 8,
@@ -85,7 +99,9 @@
         "status": true,
         "stock": 10,
         "category": "Muebles",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?gaming,chair](https://source.unsplash.com/600x600/?gaming,chair)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?gaming,chair](https://source.unsplash.com/600x600/?gaming,chair)"
+        ]
     },
     {
         "id": 9,
@@ -96,7 +112,9 @@
         "status": true,
         "stock": 40,
         "category": "Almacenamiento",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?ssd,drive](https://source.unsplash.com/600x600/?ssd,drive)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?ssd,drive](https://source.unsplash.com/600x600/?ssd,drive)"
+        ]
     },
     {
         "id": 10,
@@ -107,7 +125,9 @@
         "status": true,
         "stock": 60,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?ram,memory](https://source.unsplash.com/600x600/?ram,memory)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?ram,memory](https://source.unsplash.com/600x600/?ram,memory)"
+        ]
     },
     {
         "id": 11,
@@ -118,7 +138,9 @@
         "status": true,
         "stock": 18,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?power,supply,pc](https://source.unsplash.com/600x600/?power,supply,pc)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?power,supply,pc](https://source.unsplash.com/600x600/?power,supply,pc)"
+        ]
     },
     {
         "id": 12,
@@ -129,7 +151,9 @@
         "status": true,
         "stock": 14,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?pc,case](https://source.unsplash.com/600x600/?pc,case)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?pc,case](https://source.unsplash.com/600x600/?pc,case)"
+        ]
     },
     {
         "id": 13,
@@ -140,7 +164,9 @@
         "status": true,
         "stock": 9,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?motherboard](https://source.unsplash.com/600x600/?motherboard)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?motherboard](https://source.unsplash.com/600x600/?motherboard)"
+        ]
     },
     {
         "id": 14,
@@ -151,7 +177,9 @@
         "status": true,
         "stock": 7,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?cpu,processor](https://source.unsplash.com/600x600/?cpu,processor)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?cpu,processor](https://source.unsplash.com/600x600/?cpu,processor)"
+        ]
     },
     {
         "id": 15,
@@ -162,7 +190,9 @@
         "status": true,
         "stock": 4,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?graphics,card](https://source.unsplash.com/600x600/?graphics,card)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?graphics,card](https://source.unsplash.com/600x600/?graphics,card)"
+        ]
     },
     {
         "id": 16,
@@ -173,7 +203,9 @@
         "status": true,
         "stock": 35,
         "category": "Gaming",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?game,controller](https://source.unsplash.com/600x600/?game,controller)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?game,controller](https://source.unsplash.com/600x600/?game,controller)"
+        ]
     },
     {
         "id": 17,
@@ -184,7 +216,9 @@
         "status": true,
         "stock": 22,
         "category": "Audio",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?computer,speakers](https://source.unsplash.com/600x600/?computer,speakers)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?computer,speakers](https://source.unsplash.com/600x600/?computer,speakers)"
+        ]
     },
     {
         "id": 18,
@@ -195,7 +229,9 @@
         "status": true,
         "stock": 16,
         "category": "Audio",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?usb,microphone](https://source.unsplash.com/600x600/?usb,microphone)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?usb,microphone](https://source.unsplash.com/600x600/?usb,microphone)"
+        ]
     },
     {
         "id": 19,
@@ -206,7 +242,9 @@
         "status": true,
         "stock": 50,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?usb,hub](https://source.unsplash.com/600x600/?usb,hub)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?usb,hub](https://source.unsplash.com/600x600/?usb,hub)"
+        ]
     },
     {
         "id": 20,
@@ -217,7 +255,9 @@
         "status": true,
         "stock": 100,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?hdmi,cable](https://source.unsplash.com/600x600/?hdmi,cable)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?hdmi,cable](https://source.unsplash.com/600x600/?hdmi,cable)"
+        ]
     },
     {
         "id": 21,
@@ -228,7 +268,9 @@
         "status": true,
         "stock": 11,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?monitor,arm](https://source.unsplash.com/600x600/?monitor,arm)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?monitor,arm](https://source.unsplash.com/600x600/?monitor,arm)"
+        ]
     },
     {
         "id": 22,
@@ -239,7 +281,9 @@
         "status": true,
         "stock": 13,
         "category": "Redes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?wifi,router](https://source.unsplash.com/600x600/?wifi,router)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?wifi,router](https://source.unsplash.com/600x600/?wifi,router)"
+        ]
     },
     {
         "id": 23,
@@ -250,7 +294,9 @@
         "status": true,
         "stock": 19,
         "category": "Redes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?wifi,extender](https://source.unsplash.com/600x600/?wifi,extender)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?wifi,extender](https://source.unsplash.com/600x600/?wifi,extender)"
+        ]
     },
     {
         "id": 24,
@@ -261,7 +307,9 @@
         "status": true,
         "stock": 70,
         "category": "Almacenamiento",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?usb,flash,drive](https://source.unsplash.com/600x600/?usb,flash,drive)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?usb,flash,drive](https://source.unsplash.com/600x600/?usb,flash,drive)"
+        ]
     },
     {
         "id": 25,
@@ -272,7 +320,9 @@
         "status": true,
         "stock": 8,
         "category": "Almacenamiento",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?external,hard,drive](https://source.unsplash.com/600x600/?external,hard,drive)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?external,hard,drive](https://source.unsplash.com/600x600/?external,hard,drive)"
+        ]
     },
     {
         "id": 26,
@@ -283,7 +333,9 @@
         "status": true,
         "stock": 6,
         "category": "Tablets",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?android,tablet](https://source.unsplash.com/600x600/?android,tablet)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?android,tablet](https://source.unsplash.com/600x600/?android,tablet)"
+        ]
     },
     {
         "id": 27,
@@ -294,7 +346,9 @@
         "status": true,
         "stock": 21,
         "category": "Wearables",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?smartwatch](https://source.unsplash.com/600x600/?smartwatch)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?smartwatch](https://source.unsplash.com/600x600/?smartwatch)"
+        ]
     },
     {
         "id": 28,
@@ -305,7 +359,9 @@
         "status": true,
         "stock": 55,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?usb-c,charger](https://source.unsplash.com/600x600/?usb-c,charger)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?usb-c,charger](https://source.unsplash.com/600x600/?usb-c,charger)"
+        ]
     },
     {
         "id": 29,
@@ -316,7 +372,9 @@
         "status": true,
         "stock": 17,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?power,bank](https://source.unsplash.com/600x600/?power,bank)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?power,bank](https://source.unsplash.com/600x600/?power,bank)"
+        ]
     },
     {
         "id": 30,
@@ -327,7 +385,9 @@
         "status": true,
         "stock": 14,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?laptop,stand](https://source.unsplash.com/600x600/?laptop,stand)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?laptop,stand](https://source.unsplash.com/600x600/?laptop,stand)"
+        ]
     },
     {
         "id": 31,
@@ -338,7 +398,9 @@
         "status": true,
         "stock": 26,
         "category": "Iluminación",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?desk,led,lamp](https://source.unsplash.com/600x600/?desk,led,lamp)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?desk,led,lamp](https://source.unsplash.com/600x600/?desk,led,lamp)"
+        ]
     },
     {
         "id": 32,
@@ -349,7 +411,9 @@
         "status": true,
         "stock": 5,
         "category": "Impresión",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?printer](https://source.unsplash.com/600x600/?printer)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?printer](https://source.unsplash.com/600x600/?printer)"
+        ]
     },
     {
         "id": 33,
@@ -360,7 +424,9 @@
         "status": true,
         "stock": 7,
         "category": "Impresión",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?document,scanner](https://source.unsplash.com/600x600/?document,scanner)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?document,scanner](https://source.unsplash.com/600x600/?document,scanner)"
+        ]
     },
     {
         "id": 34,
@@ -371,7 +437,9 @@
         "status": true,
         "stock": 18,
         "category": "Seguridad",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?security,camera](https://source.unsplash.com/600x600/?security,camera)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?security,camera](https://source.unsplash.com/600x600/?security,camera)"
+        ]
     },
     {
         "id": 35,
@@ -382,7 +450,9 @@
         "status": true,
         "stock": 15,
         "category": "Redes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?network,switch](https://source.unsplash.com/600x600/?network,switch)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?network,switch](https://source.unsplash.com/600x600/?network,switch)"
+        ]
     },
     {
         "id": 36,
@@ -393,7 +463,9 @@
         "status": true,
         "stock": 90,
         "category": "Redes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?ethernet,cable](https://source.unsplash.com/600x600/?ethernet,cable)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?ethernet,cable](https://source.unsplash.com/600x600/?ethernet,cable)"
+        ]
     },
     {
         "id": 37,
@@ -404,7 +476,9 @@
         "status": true,
         "stock": 33,
         "category": "Electrónica",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?remote,control](https://source.unsplash.com/600x600/?remote,control)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?remote,control](https://source.unsplash.com/600x600/?remote,control)"
+        ]
     },
     {
         "id": 38,
@@ -415,7 +489,9 @@
         "status": true,
         "stock": 12,
         "category": "TV",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?streaming,device](https://source.unsplash.com/600x600/?streaming,device)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?streaming,device](https://source.unsplash.com/600x600/?streaming,device)"
+        ]
     },
     {
         "id": 39,
@@ -426,7 +502,9 @@
         "status": true,
         "stock": 28,
         "category": "Periféricos",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?wireless,keyboard](https://source.unsplash.com/600x600/?wireless,keyboard)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?wireless,keyboard](https://source.unsplash.com/600x600/?wireless,keyboard)"
+        ]
     },
     {
         "id": 40,
@@ -437,7 +515,9 @@
         "status": true,
         "stock": 44,
         "category": "Periféricos",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?wireless,mouse](https://source.unsplash.com/600x600/?wireless,mouse)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?wireless,mouse](https://source.unsplash.com/600x600/?wireless,mouse)"
+        ]
     },
     {
         "id": 41,
@@ -448,7 +528,9 @@
         "status": true,
         "stock": 60,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?phone,holder](https://source.unsplash.com/600x600/?phone,holder)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?phone,holder](https://source.unsplash.com/600x600/?phone,holder)"
+        ]
     },
     {
         "id": 42,
@@ -459,7 +541,9 @@
         "status": true,
         "stock": 75,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?usb-c,cable](https://source.unsplash.com/600x600/?usb-c,cable)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?usb-c,cable](https://source.unsplash.com/600x600/?usb-c,cable)"
+        ]
     },
     {
         "id": 43,
@@ -470,7 +554,9 @@
         "status": true,
         "stock": 13,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?usb,hdmi,adapter](https://source.unsplash.com/600x600/?usb,hdmi,adapter)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?usb,hdmi,adapter](https://source.unsplash.com/600x600/?usb,hdmi,adapter)"
+        ]
     },
     {
         "id": 44,
@@ -481,7 +567,9 @@
         "status": true,
         "stock": 9,
         "category": "Energía",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?voltage,stabilizer](https://source.unsplash.com/600x600/?voltage,stabilizer)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?voltage,stabilizer](https://source.unsplash.com/600x600/?voltage,stabilizer)"
+        ]
     },
     {
         "id": 45,
@@ -492,7 +580,9 @@
         "status": true,
         "stock": 6,
         "category": "Energía",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?ups,battery,backup](https://source.unsplash.com/600x600/?ups,battery,backup)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?ups,battery,backup](https://source.unsplash.com/600x600/?ups,battery,backup)"
+        ]
     },
     {
         "id": 46,
@@ -503,7 +593,9 @@
         "status": true,
         "stock": 48,
         "category": "Accesorios",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?sd,card,reader](https://source.unsplash.com/600x600/?sd,card,reader)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?sd,card,reader](https://source.unsplash.com/600x600/?sd,card,reader)"
+        ]
     },
     {
         "id": 47,
@@ -514,7 +606,9 @@
         "status": true,
         "stock": 4,
         "category": "Video",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?4k,webcam](https://source.unsplash.com/600x600/?4k,webcam)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?4k,webcam](https://source.unsplash.com/600x600/?4k,webcam)"
+        ]
     },
     {
         "id": 49,
@@ -525,7 +619,9 @@
         "status": true,
         "stock": 52,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?pc,rgb,fan](https://source.unsplash.com/600x600/?pc,rgb,fan)"]
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?pc,rgb,fan](https://source.unsplash.com/600x600/?pc,rgb,fan)"
+        ]
     },
     {
         "id": 50,
@@ -536,17 +632,8 @@
         "status": true,
         "stock": 65,
         "category": "Componentes",
-        "thumbnails": ["[https://source.unsplash.com/600x600/?thermal,paste,cpu](https://source.unsplash.com/600x600/?thermal,paste,cpu)"]
-    },
-    {
-        "id": 51,
-        "title": "a",
-        "description": "a",
-        "price": 1,
-        "code": "1",
-        "stock": 1,
-        "status": false,
-        "category": "1",
-        "thumbnails": []
+        "thumbnails": [
+            "[https://source.unsplash.com/600x600/?thermal,paste,cpu](https://source.unsplash.com/600x600/?thermal,paste,cpu)"
+        ]
     }
 ]

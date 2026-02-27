@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { ProductManager } from '../manager/Product.manager.js';
 
-const router = Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -15,21 +14,21 @@ const products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
 // Crear instancia del ProductManager
 const productManager = new ProductManager(products);
 
-// ==================== RUTAS GET ====================
+import { Router } from 'express';
+import { getProducts, getProductById, getProductsByField } from '../controller/products.controller.js';
 
-// Obtener todos los productos
-router.get('/', (req, res) => {
-    const allProducts = productManager.getProducts();
+const router = Router();
 
-    // Si se solicita con query de límite
-    const limit = req.query.limit ? parseInt(req.query.limit) : null;
+// GET /api/products
+router.get('/', getProducts);
 
-    if (limit) {
-        return res.json(allProducts.slice(0, limit));
-    }
+// GET /api/products/:id
+router.get('/:id', getProductById);
 
-    res.json(allProducts);
-});
+// GET /api/products/filter/:field?value=xxx
+router.get('/filter/:field', getProductsByField);
+
+export default router;
 
 // Obtener producto por ID
 router.get('/:pid', (req, res) => {
@@ -95,5 +94,3 @@ router.delete('/:pid', (req, res) => {
         product: result.product,
     });
 });
-
-export default router;

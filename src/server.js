@@ -4,17 +4,14 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import http from 'http';
 import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
 
 // Importar managers y socket configuration
 import { ProductManager } from './manager/Product.manager.js';
 import { configureSocketEvents } from './socket/socketEvents.js';
-import productsRouter from './routes/products.routes.js';
 
-// Obtener __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Importar rutas
+import productsRouter from './routes/products.routes.js';
+import cartsRouter from './routes/carts.routes.js';
 
 // Crear aplicación
 const app = express();
@@ -25,6 +22,9 @@ const io = new Server(server, {
         methods: ['GET', 'POST'],
     },
 });
+
+// ==================== RUTAS ====================
+app.use('/api/products', productsRouter);
 
 const PORT = process.env.PORT || 3000;
 
