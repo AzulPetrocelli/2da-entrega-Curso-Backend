@@ -25,6 +25,7 @@ const io = new Server(server, {
 
 // ==================== RUTAS ====================
 app.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
 
 const PORT = process.env.PORT || 3000;
 
@@ -66,6 +67,7 @@ app.use((req, res, next) => {
 
 // ==================== RUTAS ====================
 app.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
 
 // Ruta para obtener datos de productos (JSON API)
 app.get('/api/data/products', (req, res) => {

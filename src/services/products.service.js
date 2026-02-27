@@ -1,4 +1,4 @@
-import Product from '../models/product.model.js';
+import Product from '../models/products.model.js';
 
 export const getProductsService = async (req) => {
     const { limit = 10, page = 1, sort, query = {} } = req.query;
@@ -28,9 +28,57 @@ export const getProductsService = async (req) => {
 export const getProductsServiceById = async (id) => {
     const product = await Product.findById(id);
 
-    if (!product) {
-        throw new Error('Producto no encontrado');
+    return product;
+};
+
+export const postProductService = async (productData) => {
+    const { title, description, price, code, stock, status, category, thumbnails } = productData;
+
+    const product = {
+        title,
+        description,
+        price,
+        code,
+        stock,
+        status,
+        category,
+        thumbnails,
+    };
+
+    if (Object.values(product).some((value) => value === undefined || value === null || value === '')) {
+        return res.status(400).json({ error: 'Todos los campos son requeridos' });
     }
 
-    return { payload: product };
+    const newProduct = await Product.create(productData);
+
+    return newProduct;
+};
+
+export const putProductService = async (pid, updateData) => {
+    const { title, description, price, code, stock, status, category, thumbnails } = updateData;
+
+    const product = {
+        title,
+        description,
+        price,
+        code,
+        stock,
+        status,
+        category,
+        thumbnails,
+    };
+
+    if (Object.values(product).some((value) => value === undefined || value === null || value === '')) {
+        return res.status(400).json({ error: 'Todos los campos son requeridos' });
+    }
+
+    const productUpdated = await Product.findByIdAndUpdate({ _id: pid }, { $set: product });
+
+    return productUpdated;
+};
+
+export const deleteProductService = async (pid) => {
+    const productDeleted = await Product.findByIdAndDelete({ _id: pid });
+
+    return productDeleted;
 };
