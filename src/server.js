@@ -69,16 +69,6 @@ app.use((req, res, next) => {
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
-// Ruta para obtener datos de productos (JSON API)
-app.get('/api/data/products', (req, res) => {
-    res.json(productManager.getProducts());
-});
-
-// Ruta para la vista home
-app.get('/', (req, res) => {
-    res.render('home', { products: productManager.getProducts() });
-});
-
 // Ruta para la vista de productos en tiempo real
 app.get('/realtimeproducts', (req, res) => {
     res.render('realTimeProducts', { products: productManager.getProducts() });
