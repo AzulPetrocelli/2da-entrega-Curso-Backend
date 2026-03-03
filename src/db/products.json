@@ -1,639 +1,492 @@
 [
     {
-        "id": 1,
-        "title": "Mouse Gamer RGB",
+        "name": "Mouse Gamer RGB",
         "description": "Mouse gamer con iluminación RGB y sensor óptico de alta precisión.",
         "code": "MG-001",
         "price": 7500,
         "status": true,
         "stock": 45,
         "category": "Periféricos",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?gaming,mouse](https://source.unsplash.com/600x600/?gaming,mouse)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?gaming,mouse](https://source.unsplash.com/600x600/?gaming,mouse)"
     },
     {
-        "id": 2,
-        "title": "Teclado Mecánico",
+        "name": "Teclado Mecánico",
         "description": "Teclado mecánico con switches azules y retroiluminación.",
         "code": "TM-002",
         "price": 18500,
         "status": true,
         "stock": 30,
         "category": "Periféricos",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?mechanical,keyboard](https://source.unsplash.com/600x600/?mechanical,keyboard)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?mechanical,keyboard](https://source.unsplash.com/600x600/?mechanical,keyboard)"
     },
     {
-        "id": 3,
-        "title": "Auriculares Gamer",
+        "name": "Auriculares Gamer",
         "description": "Auriculares con sonido envolvente 7.1 y micrófono desmontable.",
         "code": "AG-003",
         "price": 22000,
         "status": true,
         "stock": 20,
         "category": "Audio",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?gaming,headset](https://source.unsplash.com/600x600/?gaming,headset)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?gaming,headset](https://source.unsplash.com/600x600/?gaming,headset)"
     },
     {
-        "id": 4,
-        "title": "Monitor 24 pulgadas",
+        "name": "Monitor 24 pulgadas",
         "description": "Monitor Full HD de 24 pulgadas con 144Hz.",
         "code": "MN-004",
         "price": 145000,
         "status": true,
         "stock": 12,
         "category": "Monitores",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?computer,monitor](https://source.unsplash.com/600x600/?computer,monitor)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?computer,monitor](https://source.unsplash.com/600x600/?computer,monitor)"
     },
     {
-        "id": 5,
-        "title": "Notebook Gamer",
+        "name": "Notebook Gamer",
         "description": "Notebook gamer con procesador i7 y placa de video dedicada.",
         "code": "NB-005",
         "price": 950000,
         "status": true,
         "stock": 5,
         "category": "Computadoras",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?gaming,laptop](https://source.unsplash.com/600x600/?gaming,laptop)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?gaming,laptop](https://source.unsplash.com/600x600/?gaming,laptop)"
     },
     {
-        "id": 6,
-        "title": "Mouse Pad XL",
+        "name": "Mouse Pad XL",
         "description": "Mouse pad tamaño XL con base antideslizante.",
         "code": "MP-006",
         "price": 4200,
         "status": true,
         "stock": 80,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?mouse,pad](https://source.unsplash.com/600x600/?mouse,pad)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?mouse,pad](https://source.unsplash.com/600x600/?mouse,pad)"
     },
     {
-        "id": 7,
-        "title": "Webcam HD",
+        "name": "Webcam HD",
         "description": "Webcam HD 1080p ideal para streaming y videollamadas.",
         "code": "WC-007",
         "price": 18000,
         "status": true,
         "stock": 25,
         "category": "Video",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?webcam](https://source.unsplash.com/600x600/?webcam)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?webcam](https://source.unsplash.com/600x600/?webcam)"
     },
     {
-        "id": 8,
-        "title": "Silla Gamer",
+        "name": "Silla Gamer",
         "description": "Silla ergonómica gamer con apoyabrazos regulables.",
         "code": "SG-008",
         "price": 210000,
         "status": true,
         "stock": 10,
         "category": "Muebles",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?gaming,chair](https://source.unsplash.com/600x600/?gaming,chair)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?gaming,chair](https://source.unsplash.com/600x600/?gaming,chair)"
     },
     {
-        "id": 9,
-        "title": "Disco SSD 1TB",
+        "name": "Disco SSD 1TB",
         "description": "Disco sólido SSD de 1TB SATA.",
         "code": "SSD-009",
         "price": 78000,
         "status": true,
         "stock": 40,
         "category": "Almacenamiento",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?ssd,drive](https://source.unsplash.com/600x600/?ssd,drive)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?ssd,drive](https://source.unsplash.com/600x600/?ssd,drive)"
     },
     {
-        "id": 10,
-        "title": "Memoria RAM 16GB",
+        "name": "Memoria RAM 16GB",
         "description": "Memoria RAM DDR4 16GB 3200MHz.",
         "code": "RAM-010",
         "price": 42000,
         "status": true,
         "stock": 60,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?ram,memory](https://source.unsplash.com/600x600/?ram,memory)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?ram,memory](https://source.unsplash.com/600x600/?ram,memory)"
     },
     {
-        "id": 11,
-        "title": "Fuente 650W",
+        "name": "Fuente 650W",
         "description": "Fuente certificada 80 Plus Bronze 650W.",
         "code": "PSU-011",
         "price": 65000,
         "status": true,
         "stock": 18,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?power,supply,pc](https://source.unsplash.com/600x600/?power,supply,pc)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?power,supply,pc](https://source.unsplash.com/600x600/?power,supply,pc)"
     },
     {
-        "id": 12,
-        "title": "Gabinete ATX",
+        "name": "Gabinete ATX",
         "description": "Gabinete ATX con panel de vidrio templado.",
         "code": "GB-012",
         "price": 90000,
         "status": true,
         "stock": 14,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?pc,case](https://source.unsplash.com/600x600/?pc,case)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?pc,case](https://source.unsplash.com/600x600/?pc,case)"
     },
     {
-        "id": 13,
-        "title": "Placa Madre B550",
+        "name": "Placa Madre B550",
         "description": "Motherboard B550 compatible con Ryzen.",
         "code": "MB-013",
         "price": 120000,
         "status": true,
         "stock": 9,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?motherboard](https://source.unsplash.com/600x600/?motherboard)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?motherboard](https://source.unsplash.com/600x600/?motherboard)"
     },
     {
-        "id": 14,
-        "title": "Procesador Ryzen 5",
+        "name": "Procesador Ryzen 5",
         "description": "Procesador AMD Ryzen 5 de 6 núcleos.",
         "code": "CPU-014",
         "price": 185000,
         "status": true,
         "stock": 7,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?cpu,processor](https://source.unsplash.com/600x600/?cpu,processor)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?cpu,processor](https://source.unsplash.com/600x600/?cpu,processor)"
     },
     {
-        "id": 15,
-        "title": "Placa de Video RTX 3060",
+        "name": "Placa de Video RTX 3060",
         "description": "GPU NVIDIA RTX 3060 con 12GB de VRAM.",
         "code": "GPU-015",
         "price": 420000,
         "status": true,
         "stock": 4,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?graphics,card](https://source.unsplash.com/600x600/?graphics,card)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?graphics,card](https://source.unsplash.com/600x600/?graphics,card)"
     },
     {
-        "id": 16,
-        "title": "Joystick USB",
+        "name": "Joystick USB",
         "description": "Joystick compatible con PC y consolas.",
         "code": "JS-016",
         "price": 15000,
         "status": true,
         "stock": 35,
         "category": "Gaming",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?game,controller](https://source.unsplash.com/600x600/?game,controller)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?game,controller](https://source.unsplash.com/600x600/?game,controller)"
     },
     {
-        "id": 17,
-        "title": "Parlantes 2.1",
+        "name": "Parlantes 2.1",
         "description": "Sistema de parlantes 2.1 con subwoofer.",
         "code": "SP-017",
         "price": 32000,
         "status": true,
         "stock": 22,
         "category": "Audio",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?computer,speakers](https://source.unsplash.com/600x600/?computer,speakers)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?computer,speakers](https://source.unsplash.com/600x600/?computer,speakers)"
     },
     {
-        "id": 18,
-        "title": "Micrófono USB",
+        "name": "Micrófono USB",
         "description": "Micrófono USB condensador para streaming.",
         "code": "MIC-018",
         "price": 27000,
         "status": true,
         "stock": 16,
         "category": "Audio",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?usb,microphone](https://source.unsplash.com/600x600/?usb,microphone)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?usb,microphone](https://source.unsplash.com/600x600/?usb,microphone)"
     },
     {
-        "id": 19,
-        "title": "Hub USB",
+        "name": "Hub USB",
         "description": "Hub USB de 4 puertos.",
         "code": "HUB-019",
         "price": 6500,
         "status": true,
         "stock": 50,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?usb,hub](https://source.unsplash.com/600x600/?usb,hub)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?usb,hub](https://source.unsplash.com/600x600/?usb,hub)"
     },
     {
-        "id": 20,
-        "title": "Cable HDMI",
+        "name": "Cable HDMI",
         "description": "Cable HDMI 2.0 de 2 metros.",
         "code": "CB-020",
         "price": 3800,
         "status": true,
         "stock": 100,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?hdmi,cable](https://source.unsplash.com/600x600/?hdmi,cable)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?hdmi,cable](https://source.unsplash.com/600x600/?hdmi,cable)"
     },
     {
-        "id": 21,
-        "title": "Soporte para Monitor",
+        "name": "Soporte para Monitor",
         "description": "Soporte ajustable para monitor.",
         "code": "SM-021",
         "price": 25000,
         "status": true,
         "stock": 11,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?monitor,arm](https://source.unsplash.com/600x600/?monitor,arm)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?monitor,arm](https://source.unsplash.com/600x600/?monitor,arm)"
     },
     {
-        "id": 22,
-        "title": "Router WiFi",
+        "name": "Router WiFi",
         "description": "Router WiFi doble banda.",
         "code": "RT-022",
         "price": 55000,
         "status": true,
         "stock": 13,
         "category": "Redes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?wifi,router](https://source.unsplash.com/600x600/?wifi,router)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?wifi,router](https://source.unsplash.com/600x600/?wifi,router)"
     },
     {
-        "id": 23,
-        "title": "Extensor WiFi",
+        "name": "Extensor WiFi",
         "description": "Extensor de señal WiFi.",
         "code": "EXT-023",
         "price": 28000,
         "status": true,
         "stock": 19,
         "category": "Redes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?wifi,extender](https://source.unsplash.com/600x600/?wifi,extender)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?wifi,extender](https://source.unsplash.com/600x600/?wifi,extender)"
     },
     {
-        "id": 24,
-        "title": "Pendrive 64GB",
+        "name": "Pendrive 64GB",
         "description": "Pendrive USB 3.0 de 64GB.",
         "code": "PD-024",
         "price": 9500,
         "status": true,
         "stock": 70,
         "category": "Almacenamiento",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?usb,flash,drive](https://source.unsplash.com/600x600/?usb,flash,drive)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?usb,flash,drive](https://source.unsplash.com/600x600/?usb,flash,drive)"
     },
     {
-        "id": 25,
-        "title": "Disco Externo 2TB",
+        "name": "Disco Externo 2TB",
         "description": "Disco rígido externo de 2TB.",
         "code": "HDD-025",
         "price": 115000,
         "status": true,
         "stock": 8,
         "category": "Almacenamiento",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?external,hard,drive](https://source.unsplash.com/600x600/?external,hard,drive)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?external,hard,drive](https://source.unsplash.com/600x600/?external,hard,drive)"
     },
     {
-        "id": 26,
-        "title": "Tablet 10 pulgadas",
+        "name": "Tablet 10 pulgadas",
         "description": "Tablet Android de 10 pulgadas.",
         "code": "TB-026",
         "price": 180000,
         "status": true,
         "stock": 6,
         "category": "Tablets",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?android,tablet](https://source.unsplash.com/600x600/?android,tablet)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?android,tablet](https://source.unsplash.com/600x600/?android,tablet)"
     },
     {
-        "id": 27,
-        "title": "Smartwatch",
+        "name": "Smartwatch",
         "description": "Reloj inteligente con monitoreo de salud.",
         "code": "SW-027",
         "price": 65000,
         "status": true,
         "stock": 21,
         "category": "Wearables",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?smartwatch](https://source.unsplash.com/600x600/?smartwatch)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?smartwatch](https://source.unsplash.com/600x600/?smartwatch)"
     },
     {
-        "id": 28,
-        "title": "Cargador USB-C",
+        "name": "Cargador USB-C",
         "description": "Cargador rápido USB-C 30W.",
         "code": "CG-028",
         "price": 12000,
         "status": true,
         "stock": 55,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?usb-c,charger](https://source.unsplash.com/600x600/?usb-c,charger)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?usb-c,charger](https://source.unsplash.com/600x600/?usb-c,charger)"
     },
     {
-        "id": 29,
-        "title": "Batería Externa",
+        "name": "Batería Externa",
         "description": "Power bank de 20000mAh.",
         "code": "PB-029",
         "price": 24000,
         "status": true,
         "stock": 17,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?power,bank](https://source.unsplash.com/600x600/?power,bank)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?power,bank](https://source.unsplash.com/600x600/?power,bank)"
     },
     {
-        "id": 30,
-        "title": "Soporte para Notebook",
+        "name": "Soporte para Notebook",
         "description": "Soporte de aluminio para notebook.",
         "code": "SN-030",
         "price": 21000,
         "status": true,
         "stock": 14,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?laptop,stand](https://source.unsplash.com/600x600/?laptop,stand)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?laptop,stand](https://source.unsplash.com/600x600/?laptop,stand)"
     },
     {
-        "id": 31,
-        "title": "Lámpara LED Escritorio",
+        "name": "Lámpara LED Escritorio",
         "description": "Lámpara LED regulable para escritorio.",
         "code": "LD-031",
         "price": 16000,
         "status": true,
         "stock": 26,
         "category": "Iluminación",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?desk,led,lamp](https://source.unsplash.com/600x600/?desk,led,lamp)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?desk,led,lamp](https://source.unsplash.com/600x600/?desk,led,lamp)"
     },
     {
-        "id": 32,
-        "title": "Impresora Multifunción",
+        "name": "Impresora Multifunción",
         "description": "Impresora multifunción WiFi.",
         "code": "IMP-032",
         "price": 175000,
         "status": true,
         "stock": 5,
         "category": "Impresión",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?printer](https://source.unsplash.com/600x600/?printer)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?printer](https://source.unsplash.com/600x600/?printer)"
     },
     {
-        "id": 33,
-        "title": "Scanner",
+        "name": "Scanner",
         "description": "Scanner de documentos portátil.",
         "code": "SC-033",
         "price": 82000,
         "status": true,
         "stock": 7,
         "category": "Impresión",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?document,scanner](https://source.unsplash.com/600x600/?document,scanner)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?document,scanner](https://source.unsplash.com/600x600/?document,scanner)"
     },
     {
-        "id": 34,
-        "title": "Cámara IP",
+        "name": "Cámara IP",
         "description": "Cámara de seguridad IP WiFi.",
         "code": "CAM-034",
         "price": 45000,
         "status": true,
         "stock": 18,
         "category": "Seguridad",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?security,camera](https://source.unsplash.com/600x600/?security,camera)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?security,camera](https://source.unsplash.com/600x600/?security,camera)"
     },
     {
-        "id": 35,
-        "title": "Switch 8 Puertos",
+        "name": "Switch 8 Puertos",
         "description": "Switch de red de 8 puertos.",
         "code": "SWI-035",
         "price": 32000,
         "status": true,
         "stock": 15,
         "category": "Redes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?network,switch](https://source.unsplash.com/600x600/?network,switch)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?network,switch](https://source.unsplash.com/600x600/?network,switch)"
     },
     {
-        "id": 36,
-        "title": "Cable de Red",
+        "name": "Cable de Red",
         "description": "Cable de red CAT6 de 5 metros.",
         "code": "CR-036",
         "price": 5200,
         "status": true,
         "stock": 90,
         "category": "Redes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?ethernet,cable](https://source.unsplash.com/600x600/?ethernet,cable)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?ethernet,cable](https://source.unsplash.com/600x600/?ethernet,cable)"
     },
     {
-        "id": 37,
-        "title": "Control Remoto Universal",
+        "name": "Control Remoto Universal",
         "description": "Control remoto universal programable.",
         "code": "CU-037",
         "price": 9800,
         "status": true,
         "stock": 33,
         "category": "Electrónica",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?remote,control](https://source.unsplash.com/600x600/?remote,control)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?remote,control](https://source.unsplash.com/600x600/?remote,control)"
     },
     {
-        "id": 38,
-        "title": "Reproductor Streaming",
+        "name": "Reproductor Streaming",
         "description": "Dispositivo de streaming Full HD.",
         "code": "RS-038",
         "price": 55000,
         "status": true,
         "stock": 12,
         "category": "TV",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?streaming,device](https://source.unsplash.com/600x600/?streaming,device)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?streaming,device](https://source.unsplash.com/600x600/?streaming,device)"
     },
     {
-        "id": 39,
-        "title": "Teclado Inalámbrico",
+        "name": "Teclado Inalámbrico",
         "description": "Teclado inalámbrico compacto.",
         "code": "TI-039",
         "price": 14000,
         "status": true,
         "stock": 28,
         "category": "Periféricos",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?wireless,keyboard](https://source.unsplash.com/600x600/?wireless,keyboard)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?wireless,keyboard](https://source.unsplash.com/600x600/?wireless,keyboard)"
     },
     {
-        "id": 40,
-        "title": "Mouse Inalámbrico",
+        "name": "Mouse Inalámbrico",
         "description": "Mouse inalámbrico ergonómico.",
         "code": "MI-040",
         "price": 9800,
         "status": true,
         "stock": 44,
         "category": "Periféricos",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?wireless,mouse](https://source.unsplash.com/600x600/?wireless,mouse)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?wireless,mouse](https://source.unsplash.com/600x600/?wireless,mouse)"
     },
     {
-        "id": 41,
-        "title": "Soporte Celular",
+        "name": "Soporte Celular",
         "description": "Soporte ajustable para celular.",
         "code": "SCEL-041",
         "price": 6200,
         "status": true,
         "stock": 60,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?phone,holder](https://source.unsplash.com/600x600/?phone,holder)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?phone,holder](https://source.unsplash.com/600x600/?phone,holder)"
     },
     {
-        "id": 42,
-        "title": "Cable USB-C",
+        "name": "Cable USB-C",
         "description": "Cable USB-C reforzado.",
         "code": "CUC-042",
         "price": 4800,
         "status": true,
         "stock": 75,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?usb-c,cable](https://source.unsplash.com/600x600/?usb-c,cable)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?usb-c,cable](https://source.unsplash.com/600x600/?usb-c,cable)"
     },
     {
-        "id": 43,
-        "title": "Adaptador USB",
+        "name": "Adaptador USB",
         "description": "Adaptador USB a HDMI.",
         "code": "ADP-043",
         "price": 19500,
         "status": true,
         "stock": 13,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?usb,hdmi,adapter](https://source.unsplash.com/600x600/?usb,hdmi,adapter)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?usb,hdmi,adapter](https://source.unsplash.com/600x600/?usb,hdmi,adapter)"
     },
     {
-        "id": 44,
-        "title": "Estabilizador",
+        "name": "Estabilizador",
         "description": "Estabilizador de tensión para PC.",
         "code": "EST-044",
         "price": 38000,
         "status": true,
         "stock": 9,
         "category": "Energía",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?voltage,stabilizer](https://source.unsplash.com/600x600/?voltage,stabilizer)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?voltage,stabilizer](https://source.unsplash.com/600x600/?voltage,stabilizer)"
     },
     {
-        "id": 45,
-        "title": "UPS",
+        "name": "UPS",
         "description": "UPS para protección eléctrica.",
         "code": "UPS-045",
         "price": 125000,
         "status": true,
         "stock": 6,
         "category": "Energía",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?ups,battery,backup](https://source.unsplash.com/600x600/?ups,battery,backup)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?ups,battery,backup](https://source.unsplash.com/600x600/?ups,battery,backup)"
     },
     {
-        "id": 46,
-        "title": "Lector de Tarjetas",
+        "name": "Lector de Tarjetas",
         "description": "Lector de tarjetas SD y microSD.",
         "code": "LT-046",
         "price": 7200,
         "status": true,
         "stock": 48,
         "category": "Accesorios",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?sd,card,reader](https://source.unsplash.com/600x600/?sd,card,reader)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?sd,card,reader](https://source.unsplash.com/600x600/?sd,card,reader)"
     },
     {
-        "id": 47,
-        "title": "Cámara Web 4K",
+        "name": "Cámara Web 4K",
         "description": "Webcam 4K para videoconferencias.",
         "code": "WC4K-047",
         "price": 85000,
         "status": true,
         "stock": 4,
         "category": "Video",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?4k,webcam](https://source.unsplash.com/600x600/?4k,webcam)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?4k,webcam](https://source.unsplash.com/600x600/?4k,webcam)"
     },
     {
-        "id": 49,
-        "title": "Ventilador RGB",
+        "name": "Ventilador RGB",
         "description": "Ventilador RGB para gabinete.",
         "code": "VRGB-049",
         "price": 6500,
         "status": true,
         "stock": 52,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?pc,rgb,fan](https://source.unsplash.com/600x600/?pc,rgb,fan)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?pc,rgb,fan](https://source.unsplash.com/600x600/?pc,rgb,fan)"
     },
     {
-        "id": 50,
-        "title": "Pasta Térmica",
+        "name": "Pasta Térmica",
         "description": "Pasta térmica de alta conductividad.",
         "code": "PT-050",
         "price": 4200,
         "status": true,
         "stock": 65,
         "category": "Componentes",
-        "thumbnails": [
-            "[https://source.unsplash.com/600x600/?thermal,paste,cpu](https://source.unsplash.com/600x600/?thermal,paste,cpu)"
-        ]
+        "thumbnails": "[https://source.unsplash.com/600x600/?thermal,paste,cpu](https://source.unsplash.com/600x600/?thermal,paste,cpu)"
     }
 ]

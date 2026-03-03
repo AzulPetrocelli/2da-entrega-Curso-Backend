@@ -1,0 +1,129 @@
+<html lang='es'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>Mi Carrito</title>
+        <script src='https://cdn.tailwindcss.com'></script>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' />
+    </head>
+    <body class='bg-gray-900 min-h-screen text-white'>
+        <div class='container mx-auto px-4 py-8 max-w-4xl'>
+            <div class="flex justify-between items-center mb-8">
+                <h1 class='text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent'>
+                    <i class="fas fa-shopping-cart text-green-500 mr-2"></i> Mi Carrito
+                </h1>
+                <a href="/" class="text-blue-400 hover:text-blue-300 transition">
+                    Seguir Comprando <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+
+            <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl p-6">
+                {{#if cart.products.length}}
+                    <div class="space-y-4">
+                        {{#each cart.products}}
+                            {{#if this.product}}
+                                <div class="flex items-center justify-between bg-gray-700 p-4 rounded-lg">
+                                    <div class="flex items-center space-x-4 w-1/2">
+                                        <div class="w-16 h-16 bg-gray-800 rounded flex items-center justify-center shrink-0">
+                                            {{#if this.product.thumbnails}}
+                                                <img src="{{this.product.thumbnails}}" alt="{{this.product.title}}" class="w-full h-full object-cover rounded">
+                                            {{else}}
+                                                <i class="fas fa-box text-gray-500 text-2xl"></i>
+                                            {{/if}}
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-lg truncate">{{this.product.title}}</h3>
+                                            <p class="text-gray-400 text-sm">{{this.product.category}}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="w-1/6 text-center">
+                                        <p class="text-sm text-gray-400 mb-1">Precio</p>
+                                        <p class="font-bold text-green-400">${{this.product.price}}</p>
+                                    </div>
+
+                                    <div class="w-1/6 text-center">
+                                        <p class="text-sm text-gray-400 mb-1">Cantidad</p>
+                                        <div class="bg-gray-900 inline-block px-3 py-1 rounded font-mono">
+                                            {{this.quantity}}
+                                        </div>
+                                    </div>
+
+                                    <div class="w-1/6 text-right">
+                                        <button onclick="removeFromCart('{{../cart._id}}', '{{this.product._id}}')" class="text-red-400 hover:text-red-300 transition p-2">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            {{else}}
+                                <div class="bg-red-900/20 text-red-400 p-4 rounded-lg">
+                                    Producto no disponible o eliminado.
+                                </div>
+                            {{/if}}
+                        {{/each}}
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-700 flex justify-between items-center">
+                        <button onclick="clearCart('{{cart._id}}')" class="text-red-400 hover:text-red-300 transition font-semibold">
+                            <i class="fas fa-times-circle mr-2"></i> Vaciar Carrito
+                        </button>
+                        
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-bold shadow-lg transition transform hover:scale-105">
+                            Proceder al Pago
+                        </button>
+                    </div>
+                {{else}}
+                    <div class='text-center py-16'>
+                        <i class='fas fa-shopping-basket text-gray-600 text-7xl mb-6'></i>
+                        <p class='text-gray-400 text-2xl mb-2'>Tu carrito está vacío</p>
+                        <p class='text-gray-500 mb-8'>¡Agrega productos para comenzar!</p>
+                        <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition">
+                            Explorar Productos
+                        </a>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <script>
+            async function removeFromCart(cid, pid) {
+                if(!confirm('¿Seguro de remover este producto?')) return;
+                
+                try {
+                    const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
+                        method: 'DELETE'
+                    });
+                    
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        alert('Error al eliminar producto');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            async function clearCart(cid) {
+                if(!confirm('¿Seguro de vaciar todo el carrito?')) return;
+                
+                try {
+                    const response = await fetch(`/api/carts/${cid}/clear`, { // O DELETE /api/carts/:cid 
+                        method: 'DELETE'
+                    });
+                    
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        // Tratar fallback con el endpoint requerido 'DELETE /:cid' que elimina todo
+                        const res2 = await fetch(`/api/carts/${cid}`, { method: 'DELETE' });
+                        if(res2.ok) window.location.reload();
+                        else alert('Error al vaciar carrito');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        </script>
+    </body>
+</html>

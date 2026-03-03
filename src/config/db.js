@@ -1,9 +1,6 @@
 import mongoose from 'mongoose';
 
-const username = 'azul';
-const password = '11042003';
-
-const mongodb_uri = 'mongodb+srv://' + username + ':' + password + '@coderhouse.lhregrq.mongodb.net/?appName=Coderhouse';
+const mongodb_uri = "mongodb+srv://azul:11042003@coderhouse.j06l3vg.mongodb.net/proyecto_final?appName=Coderhouse"
 
 const dbConnect = async () => {
     try {

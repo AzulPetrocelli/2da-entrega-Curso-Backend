@@ -3,7 +3,7 @@ import * as cs from '../services/carts.service.js';
 export const getCarts = async (req, res) => {
     try {
         const result = await cs.getCartsService(req);
-        res.status(200).json({ status: 'success', ...result });
+        res.status(200).json({ status: 'success', payload: result });
     } catch (error) {
         res.status(500).json({ status: 'error', payload: error.message });
     }
@@ -58,6 +58,31 @@ export const putCart = async (req, res) => {
     }
 };
 
+export const updateProductQuantityInCart = async (req, res) => {
+    const { cid, pid } = req.params;
+    const { quantity } = req.body;
+
+    if (!cid || !pid) {
+        return res.status(400).json({ status: 'error', payload: 'ID de carrito y producto son requeridos' });
+    }
+
+    if (quantity === undefined || quantity === 0) {
+         return res.status(400).json({ status: 'error', payload: 'Cantidad válida es requerida' });
+    }
+
+    try {
+        const result = await cs.updateProductQuantityInCartService(cid, pid, quantity);
+
+        if (!result) {
+            return res.status(404).json({ status: 'error', payload: 'Carrito o producto no encontrado' });
+        }
+
+        res.status(200).json({ status: 'success', payload: result });
+    } catch (error) {
+        res.status(500).json({ status: 'error', payload: error.message });
+    }
+};
+
 export const deleteCart = async (req, res) => {
     const { cid } = req.params;
 
@@ -83,6 +108,12 @@ export const addProductToCart = async (req, res) => {
 
     if (!cid) {
         return res.status(400).json({ status: 'error', payload: 'ID de carrito es requerido' });
+    }
+
+    const cart = await cs.getCartByIdService(cid);
+
+    if (!cart) {
+        return res.status(404).json({ status: 'error', payload: 'Carrito no encontrado' });
     }
 
     try {

@@ -56,6 +56,24 @@ export const putCartService = async (cid, updateData) => {
     return cartUpdated;
 };
 
+export const updateProductQuantityInCartService = async (cid, productId, quantity) => {
+    const cart = await Cart.findById(cid);
+    if (!cart) {
+        throw new Error('Carrito no encontrado');
+    }
+
+    const productInCart = cart.products.find(p => p.product.toString() === productId);
+    
+    if (!productInCart) {
+        throw new Error('Producto no encontrado en el carrito');
+    }
+
+    productInCart.quantity += quantity;
+    await cart.save();
+    
+    return cart;
+};
+
 export const deleteCartService = async (cid) => {
     const cartDeleted = await Cart.findByIdAndDelete({ _id: cid });
 

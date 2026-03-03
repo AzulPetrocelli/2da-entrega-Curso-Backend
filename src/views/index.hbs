@@ -1,0 +1,96 @@
+<html lang='es'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<title>Productos - Sistema de Gestión</title>
+		<script src='https://cdn.tailwindcss.com'></script>
+		<link
+			rel='stylesheet'
+			href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+		/>
+	</head>
+	<body class='bg-gray-900 min-h-screen text-white'>
+		<div class='container mx-auto px-4 py-8'>
+			<div class='mb-8 text-center'>
+				<h1 class='text-5xl font-bold text-blue-400 mb-2'>
+					Catálogo de Productos
+				</h1>
+				<div class='mt-4'>
+					<a href='/carts/648a1c92a1b2c3d4e5f6g7h8' class='text-green-400 underline'><i
+							class='fas fa-shopping-cart'
+						></i>
+						Ver Carrito de Prueba</a>
+					<!-- Nota: El ID del carrito debería ser dinámico en una app real, para la entrega podemos asumir uno o dejarlo abierto -->
+				</div>
+			</div>
+
+			<!-- Products Grid -->
+			{{#if products.length}}
+				<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+					{{#each products}}
+						<div class='bg-gray-800 rounded-lg shadow-lg p-4'>
+							<!--aca va la imagen, esta al reves lo puse asi porque las imagenes de la base ron rutas inventadas-->
+							{{#if this.thumbnails}}
+								<div class="w-full h-[200px] flex items-center justify-center bg-gray-700">
+									<i class="fas fa-image text-gray-600 text-3xl"></i>
+								</div>
+							{{else}}
+								<img src="{{this.thumbnails}}" alt="{{this.title}}" class="w-full h-full object-cover">
+							{{/if}}
+							<h3 class='text-xl font-bold mb-2'>{{this.title}}</h3>
+							<p class='text-gray-400 mb-2 truncate'>{{this.description}}</p>
+							<p class='text-green-400 font-bold text-lg mb-4'>${{this.price}}</p>
+
+							<div class='flex gap-2 mt-4'>
+								<a
+									href='/product/{{this._id}}'
+									class='flex-1 bg-blue-600 text-center py-2 rounded hover:bg-blue-700 font-semibold transition'
+								>
+									Ver Detalle
+								</a>
+								<button
+									onclick="addToCart('{{this._id}}')"
+									class='flex-1 bg-green-600 text-center py-2 rounded hover:bg-green-700 font-semibold transition'
+								>
+									<i class='fas fa-cart-plus'></i>
+									Añadir
+								</button>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+
+				<!-- Pagination Controls -->
+				<div class='mt-12 flex justify-center items-center gap-4'>
+					{{#if pagination.hasPrevPage}}
+						<a
+							href='{{pagination.prevLink}}'
+							class='px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition'
+						>
+							<i class='fas fa-chevron-left'></i>
+							Anterior
+						</a>
+					{{/if}}
+
+					<span class='text-gray-400'>Página {{pagination.page}} de {{pagination.totalPages}}</span>
+
+					{{#if pagination.hasNextPage}}
+						<a
+							href='{{pagination.nextLink}}'
+							class='px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition'
+						>
+							Siguiente
+							<i class='fas fa-chevron-right'></i>
+						</a>
+					{{/if}}
+				</div>
+			{{else}}
+				<div class='text-center py-12'>
+					<i class='fas fa-box-open text-gray-600 text-6xl mb-4'></i>
+					<p class='text-gray-400 text-xl'>No hay productos disponibles en esta página.</p>
+				</div>
+			{{/if}}
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<html lang='es'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>{{product.title}} - Detalle</title>
+        <script src='https://cdn.tailwindcss.com'></script>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' />
+    </head>
+    <body class='bg-gray-900 min-h-screen text-white'>
+        <div class='container mx-auto px-4 py-8 max-w-4xl'>
+            <a href="/" class="text-blue-400 hover:text-blue-300 mb-8 inline-block">
+                <i class="fas fa-arrow-left mr-2"></i> Volver a Productos
+            </a>
+
+            <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+                <div class="w-full md:w-1/2 bg-gray-700 min-h-[300px] flex items-center justify-center">
+                    {{#if product.thumbnails}}
+                        <img src="{{product.thumbnails}}" alt="{{product.title}}" class="object-cover w-full h-full">
+                    {{else}}
+                        <i class="fas fa-image text-gray-500 text-6xl"></i>
+                    {{/if}}
+                </div>
+
+                <div class="w-full md:w-1/2 p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h1 class="text-4xl font-bold">{{product.title}}</h1>
+                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm font-semibold">{{product.category}}</span>
+                    </div>
+                    
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">{{product.description}}</p>
+                    
+                    <div class="mb-8">
+                        <p class="text-sm text-gray-400 mb-1">Código de producto</p>
+                        <p class="font-mono bg-gray-900 inline-block px-3 py-1 rounded text-gray-300">{{product.code}}</p>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-8 border-t border-gray-700 pt-6">
+                        <div>
+                            <p class="text-gray-400 mb-1">Precio</p>
+                            <p class="text-4xl font-bold text-green-400">${{product.price}}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gray-400 mb-1">Stock Disponible</p>
+                            <p class="text-2xl font-bold {{#if (gt product.stock 0)}}text-white{{else}}text-red-500{{/if}}">
+                                {{product.stock}} unidades
+                            </p>
+                        </div>
+                    </div>
+
+                    <button onclick="addToCart('{{product._id}}')" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-lg shadow-lg transform transition hover:scale-105 flex justify-center items-center text-xl">
+                        <i class="fas fa-cart-plus mr-3"></i> Añadir al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Usando un ID hardcodeado de carrito para el ejemplo. Para implementar dinámicamente,
+            // el backend debe proporcionar el carrito actual del usuario autenticado.
+            const CART_ID = "679e9a444aeb8db84e6f406f"; 
+            
+            async function addToCart(pid) {
+                try {
+                    const response = await fetch(`/api/carts/${CART_ID}/products`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productId: pid, quantity: 1 })
+                    });
+                    
+                    if (response.ok) {
+                        alert('Producto agregado al carrito exitosamente');
+                    } else {
+                        const data = await response.json();
+                        alert('Error al agregar: ' + data.payload);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Error en red.');
+                }
+            }
+        </script>
+    </body>
+</html>

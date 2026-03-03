@@ -4,6 +4,12 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import http from 'http';
 import path from 'path';
+import dbConnect from './config/db.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Importar managers y socket configuration
 import { configureSocketEvents } from './socket/socketEvents.js';
@@ -11,9 +17,7 @@ import { configureSocketEvents } from './socket/socketEvents.js';
 // Importar rutas
 import productsRouter from './routes/products.routes.js';
 import cartsRouter from './routes/carts.routes.js';
-
-// Importar manager de productos
-import ProductManager from './controller/products.controller.js';
+import viewsRouter from './routes/views.routes.js';
 
 // Crear aplicación
 const app = express();
@@ -24,12 +28,6 @@ const io = new Server(server, {
         methods: ['GET', 'POST'],
     },
 });
-
-const PORT = process.env.PORT || 3000;
-
-// ==================== CARGAR DATOS ====================
-const productsPath = path.join(__dirname, 'db/products.json');
-const products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
 
 // ==================== MIDDLEWARE ====================
 app.use(express.json());
@@ -57,39 +55,17 @@ app.set('views', path.join(__dirname, 'views'));
 // ==================== RUTAS ====================
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
-
-// Ruta para la vista de productos en tiempo real
-app.get('/realtimeproducts', (req, res) => {
-    res.render('realTimeProducts', { products: ProductManager.getProducts() });
-});
+app.use('/', viewsRouter);
 
 // ==================== CONFIGURAR SOCKET.IO ====================
-configureSocketEvents(io, ProductManager);
+configureSocketEvents(io);
 
-// ==================== GUARDAR DATOS CUANDO SE MODIFIQUEN ====================
-
-// Escuchar eventos de cambios en productos
-io.on('connection', (socket) => {
-    // Guardar datos cuando se creen, actualicen o eliminen productos
-    socket.on('disconnect', () => {
-        fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-    });
-});
-
-// Escuchar eventos del IO para guardar datos
-io.on('productCreated', () => {
-    fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-});
-
-io.on('productUpdated', () => {
-    fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-});
-
-io.on('productDeleted', () => {
-    fs.writeFileSync(productsPath, JSON.stringify(products, null, 4));
-});
+// ==================== CONEXIÓN A MONGODB ====================
+dbConnect()
 
 // ==================== INICIAR SERVIDOR ====================
+const PORT = process.env.PORT || 3000;
+
 server.listen(PORT, () => {
     console.log(`\n🚀 Servidor corriendo en el puerto: ${PORT}`);
     console.log(`📱 Vista de productos: http://localhost:${PORT}/`);

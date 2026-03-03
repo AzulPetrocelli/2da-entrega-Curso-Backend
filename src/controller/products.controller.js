@@ -62,6 +62,12 @@ export const putProduct = async (req, res) => {
         return res.status(400).json({ status: 'error', message: 'ID de producto es requerido'  });
     }
 
+    const product = await ps.getProductsServiceById(pid);
+
+    if (!product) {
+        return res.status(404).json({ status: 'error', payload: 'El id ingresaro no corresponde a ningun Producto' });
+    }
+
     try {
         const result = await ps.putProductService(pid, req.body);
 
