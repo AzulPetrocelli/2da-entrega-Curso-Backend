@@ -6,12 +6,14 @@ import http from 'http';
 import path from 'path';
 
 // Importar managers y socket configuration
-import { ProductManager } from './manager/Product.manager.js';
 import { configureSocketEvents } from './socket/socketEvents.js';
 
 // Importar rutas
 import productsRouter from './routes/products.routes.js';
 import cartsRouter from './routes/carts.routes.js';
+
+// Importar manager de productos
+import ProductManager from './controller/products.controller.js';
 
 // Crear aplicación
 const app = express();
@@ -23,18 +25,11 @@ const io = new Server(server, {
     },
 });
 
-// ==================== RUTAS ====================
-app.use('/api/products', productsRouter);
-app.use('/api/carts', cartsRouter);
-
 const PORT = process.env.PORT || 3000;
 
 // ==================== CARGAR DATOS ====================
 const productsPath = path.join(__dirname, 'db/products.json');
 const products = JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
-
-// Crear instancia del ProductManager y pasar io
-const productManager = new ProductManager(products, io);
 
 // ==================== MIDDLEWARE ====================
 app.use(express.json());
@@ -59,25 +54,20 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-// ==================== PASAR DATOS GLOBALES A HANDLEBARS ====================
-app.use((req, res, next) => {
-    res.locals.products = productManager.getProducts();
-    next();
-});
-
 // ==================== RUTAS ====================
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
 // Ruta para la vista de productos en tiempo real
 app.get('/realtimeproducts', (req, res) => {
-    res.render('realTimeProducts', { products: productManager.getProducts() });
+    res.render('realTimeProducts', { products: ProductManager.getProducts() });
 });
 
 // ==================== CONFIGURAR SOCKET.IO ====================
-configureSocketEvents(io, productManager);
+configureSocketEvents(io, ProductManager);
 
 // ==================== GUARDAR DATOS CUANDO SE MODIFIQUEN ====================
+
 // Escuchar eventos de cambios en productos
 io.on('connection', (socket) => {
     // Guardar datos cuando se creen, actualicen o eliminen productos
