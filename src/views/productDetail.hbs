@@ -55,8 +55,8 @@
         </div>
 
         <script>
-            // Integración para Agregar al Carrito
-            const CART_ID = "679e9a444aeb8db84e6f406f"; 
+            // Integración para Agregar al Carrito --> por ahora lo harcodeo ya que no tengo hecho un login como para seleccionar el carrito del usuario
+            const CART_ID = "69a7a6b91d450e5387aeedf3"; 
             
             async function addToCart(pid) {
                 try {
@@ -64,7 +64,8 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
-                        }
+                        },
+                        body: JSON.stringify({ productId: pid, quantity: 1 })
                     });
                     
                     if (response.ok) {

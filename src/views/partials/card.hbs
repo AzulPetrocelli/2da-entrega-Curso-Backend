@@ -50,9 +50,20 @@
             </div>
         </div>
 
-        <!-- Button -->
-        <button class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-2 rounded-lg hover:from-blue-700 hover:to-cyan-700 transition duration-200 font-semibold">
-            <i class="fas fa-shopping-cart mr-2"></i>Ver Detalles
-        </button>
+        <!-- Buttons -->
+        <div class="flex gap-2 mt-4">
+            <a
+                href='/product/{{this._id}}'
+                class="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-center py-2 rounded-lg hover:from-blue-700 hover:to-cyan-700 transition duration-200 font-semibold"
+            >
+                Ver Detalle
+            </a>
+            <button
+                onclick="addToCart('{{this._id}}')"
+                class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2 rounded-lg hover:from-green-600 hover:to-emerald-700 transition duration-200 font-semibold"
+            >
+                <i class="fas fa-cart-plus mr-1"></i>Añadir
+            </button>
+        </div>
     </div>
 </div>

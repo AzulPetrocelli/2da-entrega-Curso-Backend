@@ -45,11 +45,11 @@
                                     <div class="w-1/6 text-center">
                                         <p class="text-sm text-gray-400 mb-1">Cantidad</p>
                                         <div class="flex items-center justify-center space-x-2">
-                                            <button onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', {{this.quantity}} - 1)" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-white font-bold transition">
+                                            <button onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', - 1)" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-white font-bold transition">
                                                 -
                                             </button>
                                             <input type="number" readonly value="{{this.quantity}}" class="w-12 text-center bg-gray-900 border border-gray-700 rounded py-1 font-mono outline-none">
-                                            <button onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', {{this.quantity}} + 1)" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-white font-bold transition">
+                                            <button onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', 1)" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-white font-bold transition">
                                                 +
                                             </button>
                                         </div>
@@ -112,11 +112,6 @@
             }
 
             async function updateQuantity(cid, pid, newQuantity) {
-                if (newQuantity <= 0) {
-                    // Si se baja de 1, preguntamos si quieren eliminarlo
-                    return removeFromCart(cid, pid);
-                }
-
                 try {
                     const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
                         method: 'PUT',

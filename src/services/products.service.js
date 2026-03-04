@@ -92,7 +92,7 @@ export const getProductsService = async (req) => {
 };
 
 export const getProductsServiceById = async (id) => {
-    const product = await Product.find({ _id: {$eq: id} });
+    const product = await Product.findById(id);
 
     return product;
 };

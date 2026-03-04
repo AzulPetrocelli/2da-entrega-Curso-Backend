@@ -16,7 +16,7 @@
 					Catálogo de Productos
 				</h1>
 				<div class='mt-4'>
-					<a href='/carts/679e9a444aeb8db84e6f406f' class='text-green-400 underline hover:text-green-300 transition'>
+					<a href='/carts/69a7a6b91d450e5387aeedf3' class='text-green-400 underline hover:text-green-300 transition'>
                         <i class='fas fa-shopping-cart mr-2'></i>
 						Ver Carrito
                     </a>
@@ -86,14 +86,15 @@
 		<script src="/js/filter.js"></script>
 		<script>
             // Integración para Agregar al Carrito
-			const CART_ID = "679e9a444aeb8db84e6f406f"; 
+			const CART_ID = "69a7a6b91d450e5387aeedf3"; 
 			async function addToCart(pid) {
                 try {
                     const response = await fetch(`/api/carts/${CART_ID}/products/${pid}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
-                        }
+                        },
+                        body: JSON.stringify({ productId: pid, quantity: 1 })
                     });
                     
                     if (response.ok) {
