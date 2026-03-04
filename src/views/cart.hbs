@@ -96,7 +96,7 @@
         </div>
 
         <script>
-            async function removeFromCart(cid, pid) {
+            const removeFromCart = async (cid, pid) => {
                 const confirmed = await showConfirmModal('Eliminar producto', '¿Seguro que deseas remover este producto de su carrito?');
                 if(!confirmed) return;
                 
@@ -117,7 +117,7 @@
                 }
             }
 
-            async function updateQuantity(cid, pid, newQuantity) {
+             const updateQuantity = async (cid, pid, newQuantity) => {
                 try {
                     const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
                         method: 'PUT',
@@ -139,7 +139,7 @@
                 }
             }
 
-            async function clearCart(cid) {
+             const clearCart = async (cid) => {
                 const confirmed = await showConfirmModal('Vaciar carrito', '¿Estás completamente seguro de que quieres vaciar todo el carrito?');
                 if(!confirmed) return;
                 
