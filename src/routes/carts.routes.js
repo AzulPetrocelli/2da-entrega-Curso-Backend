@@ -17,7 +17,7 @@ router.get('/:cid', (res, req) => cc.getCartById(res, req));
 router.post('/', (res, req) => cc.postCart(res, req));
 
 // POST /api/carts/:cid/products - Agregar producto al carrito
-router.post('/:cid/products', (res, req) => cc.addProductToCart(res, req));
+router.post('/:cid/products/:pid', (res, req) => cc.addProductToCart(res, req));
 
 // ==================== RUTAS PUT ====================
 

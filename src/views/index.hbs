@@ -24,73 +24,267 @@
 				</div>
 			</div>
 
-			<!-- Products Grid -->
-			{{#if products.length}}
-				<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-					{{#each products}}
-						<div class='bg-gray-800 rounded-lg shadow-lg p-4'>
-							<!--aca va la imagen, esta al reves lo puse asi porque las imagenes de la base ron rutas inventadas-->
-							{{#if this.thumbnails}}
-								<div class="w-full h-[200px] flex items-center justify-center bg-gray-700">
-									<i class="fas fa-image text-gray-600 text-3xl"></i>
-								</div>
-							{{else}}
-								<img src="{{this.thumbnails}}" alt="{{this.title}}" class="w-full h-full object-cover">
-							{{/if}}
-							<h3 class='text-xl font-bold mb-2'>{{this.title}}</h3>
-							<p class='text-gray-400 mb-2 truncate'>{{this.description}}</p>
-							<p class='text-green-400 font-bold text-lg mb-4'>${{this.price}}</p>
+			<!-- Main Layout: Sidebar + Content -->
+			<div class='flex flex-col lg:flex-row gap-8'>
 
-							<div class='flex gap-2 mt-4'>
-								<a
-									href='/product/{{this._id}}'
-									class='flex-1 bg-blue-600 text-center py-2 rounded hover:bg-blue-700 font-semibold transition'
-								>
-									Ver Detalle
-								</a>
-								<button
-									onclick="addToCart('{{this._id}}')"
-									class='flex-1 bg-green-600 text-center py-2 rounded hover:bg-green-700 font-semibold transition'
-								>
-									<i class='fas fa-cart-plus'></i>
-									Añadir
-								</button>
+				<!-- Sidebar -->
+				<aside
+					class='w-full lg:w-1/4 lg:flex-shrink-0 bg-gray-800 p-6 rounded-lg shadow-lg self-start sticky top-4'
+				>
+					<h2 class='text-2xl font-bold mb-4 border-b border-gray-700 pb-2'>
+						<i class='fas fa-filter mr-2 text-blue-400'></i>Filtros
+					</h2>
+					<form id='filterForm'>
+						<!-- Name Search -->
+						<div class='mb-4'>
+							<label class='block text-sm font-medium mb-1 text-gray-400'>Buscar por Nombre</label>
+							<div class='relative'>
+								<i class='fas fa-search absolute left-3 top-3 text-gray-500'></i>
+								<input
+									type='text'
+									id='filter-name'
+									name='name'
+									placeholder='Ej: PlayStation...'
+									class='w-full bg-gray-700 text-white rounded pl-10 pr-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
+								/>
 							</div>
 						</div>
-					{{/each}}
-				</div>
 
-				<!-- Pagination Controls -->
-				<div class='mt-12 flex justify-center items-center gap-4'>
-					{{#if pagination.hasPrevPage}}
-						<a
-							href='{{pagination.prevLink}}'
-							class='px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition'
-						>
-							<i class='fas fa-chevron-left'></i>
-							Anterior
-						</a>
+						<!-- Price Range -->
+						<div class='mb-4'>
+							<label class='block text-sm font-medium mb-1 text-gray-400'>Precio</label>
+							<div class='flex items-center gap-2'>
+								<input
+									type='number'
+									id='filter-minPrice'
+									name='minPrice'
+									placeholder='Min'
+									class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
+								/>
+								<span class='text-gray-500'>-</span>
+								<input
+									type='number'
+									id='filter-maxPrice'
+									name='maxPrice'
+									placeholder='Max'
+									class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
+								/>
+							</div>
+						</div>
+
+						<!-- Categories Accordion -->
+						<div class='mb-4'>
+							<details class='group bg-gray-700 rounded overflow-hidden shadow-inner' open>
+								<summary
+									class='flex justify-between items-center font-medium cursor-pointer p-3 select-none text-gray-300 hover:bg-gray-600 transition'
+								>
+									Categorías
+									<i class='fas fa-chevron-down group-open:rotate-180 transition duration-300'></i>
+								</summary>
+								<div
+									class='p-3 bg-gray-750 border-t border-gray-600 max-h-48 overflow-y-auto space-y-2'
+								>
+									{{#each categories}}
+										<label class='flex items-center space-x-2 cursor-pointer group/label'>
+											<input
+												type='checkbox'
+												name='categories'
+												value='{{this}}'
+												class='filter-category form-checkbox h-4 w-4 text-blue-500 rounded bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
+											/>
+											<span
+												class='text-gray-300 text-sm group-hover/label:text-white transition'
+											>{{this}}</span>
+										</label>
+									{{/each}}
+								</div>
+							</details>
+						</div>
+
+						<!-- Availability -->
+						<div class='mb-4'>
+							<label class='flex items-center space-x-2 cursor-pointer group'>
+								<input
+									type='checkbox'
+									id='filter-available'
+									name='available'
+									class='form-checkbox h-5 w-5 text-blue-500 rounded bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
+								/>
+								<span class='text-gray-300 font-medium group-hover:text-white transition'>Solo
+									Disponibles</span>
+							</label>
+						</div>
+
+						<!-- Sorting -->
+						<div class='mb-6'>
+							<label class='block text-sm font-medium mb-1 text-gray-400'>Ordenar por Precio</label>
+							<select
+								id='filter-sort'
+								name='sort'
+								class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition appearance-none cursor-pointer'
+							>
+								<option value=''>Relevancia</option>
+								<option value='asc'>Menor a Mayor</option>
+								<option value='desc'>Mayor a Menor</option>
+							</select>
+						</div>
+
+						<!-- Actions -->
+						<div class='flex flex-col gap-2'>
+							<button
+								type='button'
+								onclick='applyFilters()'
+								class='w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded font-semibold transition flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+							>
+								<i class='fas fa-check'></i>
+								Aplicar Filtros
+							</button>
+							<button
+								type='button'
+								onclick='clearFilters()'
+								class='w-full bg-gray-600 hover:bg-gray-500 text-white py-2 rounded font-semibold transition flex items-center justify-center gap-2 text-sm shadow'
+							>
+								<i class='fas fa-times'></i>
+								Limpiar Filtros
+							</button>
+						</div>
+					</form>
+				</aside>
+
+				<!-- Main Content Area -->
+				<div class='w-full lg:w-3/4'>
+					<!-- Products Grid -->
+					{{#if products.length}}
+						<div class='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6'>
+							{{#each products}}
+								<div class='bg-gray-800 rounded-lg shadow-lg p-4'>
+									<!--aca va la imagen, esta al reves lo puse asi porque las imagenes de la base ron rutas inventadas-->
+									{{#if this.thumbnails}}
+										<div class='w-full h-[200px] flex items-center justify-center bg-gray-700'>
+											<i class='fas fa-image text-gray-600 text-3xl'></i>
+										</div>
+									{{else}}
+										<img
+											src='{{this.thumbnails}}'
+											alt='{{this.title}}'
+											class='w-full h-full object-cover'
+										/>
+									{{/if}}
+									<h3 class='text-xl font-bold mb-2'>{{this.title}}</h3>
+									<p class='text-gray-400 mb-2 truncate'>{{this.description}}</p>
+									<p class='text-green-400 font-bold text-lg mb-4'>${{this.price}}</p>
+
+									<div class='flex gap-2 mt-4'>
+										<a
+											href='/product/{{this._id}}'
+											class='flex-1 bg-blue-600 text-center py-2 rounded hover:bg-blue-700 font-semibold transition'
+										>
+											Ver Detalle
+										</a>
+										<button
+											onclick="addToCart('{{this._id}}')"
+											class='flex-1 bg-green-600 text-center py-2 rounded hover:bg-green-700 font-semibold transition'
+										>
+											<i class='fas fa-cart-plus'></i>
+											Añadir
+										</button>
+									</div>
+								</div>
+							{{/each}}
+						</div>
+
+						<!-- Pagination Controls -->
+						<div class='mt-12 flex justify-center items-center gap-4'>
+							{{#if pagination.hasPrevPage}}
+								<a
+									href='{{pagination.prevLink}}'
+									class='px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition'
+								>
+									<i class='fas fa-chevron-left'></i>
+									Anterior
+								</a>
+							{{/if}}
+
+							<span class='text-gray-400'>Página
+								{{pagination.page}}
+								de
+								{{pagination.totalPages}}</span>
+
+							{{#if pagination.hasNextPage}}
+								<a
+									href='{{pagination.nextLink}}'
+									class='px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition'
+								>
+									Siguiente
+									<i class='fas fa-chevron-right'></i>
+								</a>
+							{{/if}}
+						</div>
+					{{else}}
+						<div class='text-center py-12 bg-gray-800 rounded-lg shadow-lg'>
+							<i class='fas fa-search text-gray-600 text-6xl mb-4'></i>
+							<p class='text-gray-400 text-xl'>No se encontraron productos con los filtros
+								seleccionados.</p>
+						</div>
 					{{/if}}
-
-					<span class='text-gray-400'>Página {{pagination.page}} de {{pagination.totalPages}}</span>
-
-					{{#if pagination.hasNextPage}}
-						<a
-							href='{{pagination.nextLink}}'
-							class='px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition'
-						>
-							Siguiente
-							<i class='fas fa-chevron-right'></i>
-						</a>
-					{{/if}}
 				</div>
-			{{else}}
-				<div class='text-center py-12'>
-					<i class='fas fa-box-open text-gray-600 text-6xl mb-4'></i>
-					<p class='text-gray-400 text-xl'>No hay productos disponibles en esta página.</p>
-				</div>
-			{{/if}}
+				<!-- End Main Content Area -->
+			</div>
+			<!-- End Main Layout -->
 		</div>
 
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const params = new URLSearchParams(window.location.search);
+				
+				if(params.has('name')) document.getElementById('filter-name').value = params.get('name');
+				if(params.has('minPrice')) document.getElementById('filter-minPrice').value = params.get('minPrice');
+				if(params.has('maxPrice')) document.getElementById('filter-maxPrice').value = params.get('maxPrice');
+				if(params.has('available') && params.get('available') === 'true') {
+					document.getElementById('filter-available').checked = true;
+				}
+				if(params.has('sort')) document.getElementById('filter-sort').value = params.get('sort');
+
+				const selectedCategories = params.getAll('categories');
+				if (selectedCategories.length > 0) {
+					document.querySelectorAll('.filter-category').forEach(checkbox => {
+						if (selectedCategories.includes(checkbox.value)) {
+							checkbox.checked = true;
+						}
+					});
+				}
+			});
+
+			function applyFilters() {
+				const form = document.getElementById('filterForm');
+				const formData = new FormData(form);
+				const params = new URLSearchParams();
+
+				const name = formData.get('name');
+				if (name && name.trim() !== '') params.append('name', name.trim());
+
+				const minPrice = formData.get('minPrice');
+				if (minPrice && minPrice.trim() !== '') params.append('minPrice', minPrice.trim());
+
+				const maxPrice = formData.get('maxPrice');
+				if (maxPrice && maxPrice.trim() !== '') params.append('maxPrice', maxPrice.trim());
+
+				formData.getAll('categories').forEach(cat => {
+					params.append('categories', cat);
+				});
+
+				const available = formData.get('available');
+				if (available === 'on') params.append('available', 'true');
+
+				const sort = formData.get('sort');
+				if (sort && sort !== '') params.append('sort', sort);
+
+				window.location.href = `/?${params.toString()}`;
+			}
+
+			function clearFilters() {
+				window.location.href = '/';
+			}
+		</script>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 import Product from '../models/products.model.js';
 
 export const getProductsService = async (req) => {
-    let { limit = 10, page = 1, sort, query } = req.query;
+    let { limit = 10, page = 1, sort, query, name, minPrice, maxPrice, categories, available } = req.query;
 
     const parsedLimit = parseInt(limit);
     const parsedPage = parseInt(page);
@@ -9,6 +9,33 @@ export const getProductsService = async (req) => {
     let filter = {};
     if (query) {
         filter = { $or: [{ category: query }, { status: query }] };
+    }
+
+    if (name) {
+        filter.name = { $regex: name, $options: 'i' };
+    }
+
+    if (minPrice || maxPrice) {
+        filter.price = {};
+        if (minPrice) {
+            filter.price.$gte = Number(minPrice);
+        } else if (maxPrice) {
+            filter.price.$gte = 0;
+        }
+        if (maxPrice) {
+            filter.price.$lte = Number(maxPrice);
+        }
+    }
+
+    if (categories) {
+        const categoriesArray = Array.isArray(categories) ? categories : [categories];
+        if (categoriesArray.length > 0) {
+            filter.category = { $in: categoriesArray };
+        }
+    }
+
+    if (available === 'true' || available === 'on') {
+        filter.status = 'true';
     }
 
     const totalDocs = await Product.countDocuments(filter);
@@ -28,12 +55,27 @@ export const getProductsService = async (req) => {
     let prevLink = null;
     let nextLink = null;
 
+    const buildQueryString = (pageNum) => {
+        let qs = `?limit=${parsedLimit}&page=${pageNum}`;
+        if (sort) qs += `&sort=${sort}`;
+        if (query) qs += `&query=${encodeURIComponent(query)}`;
+        if (name) qs += `&name=${encodeURIComponent(name)}`;
+        if (minPrice) qs += `&minPrice=${minPrice}`;
+        if (maxPrice) qs += `&maxPrice=${maxPrice}`;
+        if (categories) {
+            const catArr = Array.isArray(categories) ? categories : [categories];
+            catArr.forEach(c => qs += `&categories=${encodeURIComponent(c)}`);
+        }
+        if (available) qs += `&available=${available}`;
+        return qs;
+    };
+
     if (hasPrevPage) {
-        prevLink = `${baseUrl}?limit=${parsedLimit}&page=${parsedPage - 1}${sort ? `&sort=${sort}` : ''}${query ? `&query=${encodeURIComponent(query)}` : ''}`;
+        prevLink = `${baseUrl}${buildQueryString(parsedPage - 1)}`;
     }
 
     if (hasNextPage) {
-        nextLink = `${baseUrl}?limit=${parsedLimit}&page=${parsedPage + 1}${sort ? `&sort=${sort}` : ''}${query ? `&query=${encodeURIComponent(query)}` : ''}`;
+        nextLink = `${baseUrl}${buildQueryString(parsedPage + 1)}`;
     }
 
     return {

@@ -1,13 +1,29 @@
 import * as cs from '../services/carts.service.js';
 import * as ps from '../services/products.service.js';
+import Product from '../models/products.model.js';
 
 export const RenderProducts = async (req, res) => {
     try {
         const result = await ps.getProductsService(req);
         const plainProducts = result.payload.map(doc => doc.toObject());
         
+        //Me traigo todas las categorias para el filtro
+        const categories = await Product.distinct('category');
+        
+        const currentFilters = {
+            name: req.query.name || '',
+            minPrice: req.query.minPrice || '',
+            maxPrice: req.query.maxPrice || '',
+            categories: Array.isArray(req.query.categories) ? req.query.categories : (req.query.categories ? [req.query.categories] : []),
+            available: req.query.available === 'on' || req.query.available === 'true',
+            sort: req.query.sort || ''
+        };
+        
+        //Por cada busqueda renderizo la vista index
         res.render('index', { 
             products: plainProducts, 
+            categories,
+            currentFilters,
             pagination: {
                 totalPages: result.totalPages,
                 page: result.page,
