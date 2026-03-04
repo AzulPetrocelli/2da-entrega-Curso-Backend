@@ -1,4 +1,5 @@
 import Product from '../models/products.model.js';
+import { validateRequiredFields } from '../utils/validation.js';
 
 export const getProductsService = async (req) => {
     let { limit = 10, page = 1, sort, query, name, minPrice, maxPrice, categories, available } = req.query;
@@ -111,9 +112,7 @@ export const postProductService = async (productData) => {
         thumbnails,
     };
 
-    if (Object.values(product).some((value) => value === undefined || value === null || value === '')) {
-        throw new Error('Todos los campos son requeridos');
-    }
+    validateRequiredFields(product, ['name', 'description', 'price', 'code', 'stock', 'status', 'category']);
 
     const newProduct = await Product.create(productData);
 
@@ -134,9 +133,7 @@ export const putProductService = async (pid, updateData) => {
         thumbnails,
     };
 
-    if (Object.values(product).some(value => value === undefined || value === null || value === '')) {
-        throw new Error('Todos los campos son requeridos');
-    }
+    validateRequiredFields(product, ['name', 'description', 'price', 'code', 'stock', 'status', 'category']);
 
     const productUpdated = await Product.findByIdAndUpdate(
         pid,
