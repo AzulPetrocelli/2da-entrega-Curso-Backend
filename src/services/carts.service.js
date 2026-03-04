@@ -83,24 +83,20 @@ export const deleteCartService = async (cid) => {
 export const addProductToCartService = async (cid, productData) => {
     const { productId, quantity } = productData;
 
-    //Valido que el productId y quantity(cantidad de unidades a agregar) sean enviados, si no lo son lanzo error
     if (!productId || !quantity) {
         throw new Error('productId y quantity son requeridos');
     }
 
-    //Valido que el producto exista, si no existe lanzo error
     const productSelected = await Product.findById(productId);
     if (!productSelected) {
         throw new Error('Producto no encontrado');
     }
 
-    //Valido que el id del carrito exista, si no existe lanzo error
     const cart = await Cart.findById(cid);
     if (!cart) {
         throw new Error('Carrito no encontrado');
     }
 
-    //Valido si el producto ya existe en el carrito, si es así sumo la cantidad, sino lo agrego como nuevo producto
     const existingProduct = cart.products.find((p) => p.product.toString() === productId);
 
     if (existingProduct) {

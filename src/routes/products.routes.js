@@ -5,24 +5,26 @@ const router = Router();
 
 // ==================== RUTAS GET ====================
 
-// GET /api/products
+// Obtener todos los productos
 router.get('/', (req, res) => pc.getProducts(req, res));
 
-// GET /api/products/:id
+// Obtener producto por ID
 router.get('/:id', (req, res) => pc.getProductById(req, res));
 
-// GET /api/products/filter/:field?value=xxx
+// Obtener productos por campo
 router.get('/filter/:field', (req, res) => pc.getProductsByField(req, res));
 
 // ==================== RUTAS POST ====================
 
-// POST /api/products
+// Agregar producto
 router.post('/', (req, res) => pc.postProduct(req, res));
 
 // ==================== RUTAS PUT ====================
+//Actualar productpo segun ID
 router.put('/:pid', (req, res) => pc.putProduct(req, res));
 
 // ==================== RUTAS DELETE ====================
+//Eliminar producto segun ID
 router.delete('/:pid', (req, res) => pc.deleteProduct(req, res));
 
 export default router;
