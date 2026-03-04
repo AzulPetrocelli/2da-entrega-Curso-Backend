@@ -8,7 +8,7 @@
     </head>
     <body class='bg-gray-900 min-h-screen text-white'>
         <div class='container mx-auto px-4 py-8 max-w-4xl'>
-            <a href="/" class="text-blue-400 hover:text-blue-300 mb-8 inline-block">
+            <a href="/" class="text-blue-400 hover:text-blue-300 mb-8 inline-block transition">
                 <i class="fas fa-arrow-left mr-2"></i> Volver a Productos
             </a>
 
@@ -55,22 +55,20 @@
         </div>
 
         <script>
-            // Usando un ID hardcodeado de carrito para el ejemplo. Para implementar dinámicamente,
-            // el backend debe proporcionar el carrito actual del usuario autenticado.
+            // Integración para Agregar al Carrito
             const CART_ID = "679e9a444aeb8db84e6f406f"; 
             
             async function addToCart(pid) {
                 try {
-                    const response = await fetch(`/api/carts/${CART_ID}/products`, {
+                    const response = await fetch(`/api/carts/${CART_ID}/products/${pid}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ productId: pid, quantity: 1 })
+                        }
                     });
                     
                     if (response.ok) {
-                        alert('Producto agregado al carrito exitosamente');
+                        alert('¡Producto agregado al carrito exitosamente!');
                     } else {
                         const data = await response.json();
                         alert('Error al agregar: ' + data.payload);
