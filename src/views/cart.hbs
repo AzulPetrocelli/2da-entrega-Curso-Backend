@@ -7,6 +7,10 @@
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' />
     </head>
     <body class='bg-gray-900 min-h-screen text-white'>
+        <!-- Toaster de Notificaciones y Modales -->
+        {{> toast}}
+        {{> confirmModal}}
+
         <div class='container mx-auto px-4 py-8 max-w-4xl'>
             <div class="flex justify-between items-center mb-8">
                 <h1 class='text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent'>
@@ -93,7 +97,8 @@
 
         <script>
             async function removeFromCart(cid, pid) {
-                if(!confirm('¿Seguro de remover este producto?')) return;
+                const confirmed = await showConfirmModal('Eliminar producto', '¿Seguro que deseas remover este producto de su carrito?');
+                if(!confirmed) return;
                 
                 try {
                     const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
@@ -104,10 +109,11 @@
                         window.location.reload();
                     } else {
                         const data = await response.json();
-                        alert('Error al eliminar producto: ' + data.payload);
+                        showToast('Error al eliminar producto', 'error');
                     }
                 } catch (error) {
                     console.error('Error:', error);
+                    showToast('Error de red al eliminar.', 'error');
                 }
             }
 
@@ -125,16 +131,17 @@
                         window.location.reload();
                     } else {
                         const data = await response.json();
-                        alert('Error al actualizar cantidad: ' + data.payload);
+                        showToast('Error al actualizar cantidad', 'error');
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    alert('Error en red.');
+                    showToast('Error en la red', 'error');
                 }
             }
 
             async function clearCart(cid) {
-                if(!confirm('¿Seguro de vaciar todo el carrito?')) return;
+                const confirmed = await showConfirmModal('Vaciar carrito', '¿Estás completamente seguro de que quieres vaciar todo el carrito?');
+                if(!confirmed) return;
                 
                 try {
                     const response = await fetch(`/api/carts/${cid}/clear`, { // O DELETE /api/carts/:cid 
@@ -147,10 +154,11 @@
                         // Tratar fallback con el endpoint requerido 'DELETE /:cid' que elimina todo
                         const res2 = await fetch(`/api/carts/${cid}`, { method: 'DELETE' });
                         if(res2.ok) window.location.reload();
-                        else alert('Error al vaciar carrito');
+                        else showToast('Error al vaciar carrito', 'error');
                     }
                 } catch (error) {
                     console.error('Error:', error);
+                    showToast('Error en la red al vaciar carrito', 'error');
                 }
             }
         </script>

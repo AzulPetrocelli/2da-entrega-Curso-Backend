@@ -10,6 +10,9 @@
 		/>
 	</head>
 	<body class='bg-gray-900 min-h-screen text-white'>
+        <!-- Toaster de Notificaciones -->
+        {{> toast}}
+
 		<div class='container mx-auto px-4 py-8'>
 			<div class='mb-8 text-center'>
 				<h1 class='text-5xl font-bold text-blue-400 mb-2'>
@@ -98,14 +101,14 @@
                     });
                     
                     if (response.ok) {
-                        alert('¡Producto agregado al carrito exitosamente!');
+                        showToast('Producto agregado al carrito exitosamente');
                     } else {
                         const data = await response.json();
-                        alert('Error al agregar: ' + data.payload);
+                        showToast('Error al agregar el producto', 'error');
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    alert('Error en red.');
+                    showToast('Error en la red', 'error');
                 }
             }
 		</script>

@@ -1,0 +1,35 @@
+<div id="toast-container" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex flex-col gap-2 transition-all duration-300"></div>
+
+<script>
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        
+        const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+        const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+        toast.className = `${bgColor} text-white px-6 py-3 rounded shadow-lg flex items-center gap-3 transform transition-all duration-300 -translate-y-10 opacity-0`;
+        
+        toast.innerHTML = `
+            <i class="fas ${icon} text-xl"></i>
+            <span class="font-medium">${message}</span>
+        `;
+        
+        container.appendChild(toast);
+        
+        // Animacion de entrada
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                toast.classList.remove('-translate-y-10', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+            });
+        });
+
+        // Remueve la animacion despues de 3 segundos
+        setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('-translate-y-10', 'opacity-0');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+</script>

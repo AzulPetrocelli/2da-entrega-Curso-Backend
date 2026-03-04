@@ -1,0 +1,66 @@
+<div id="confirm-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-60 flex items-center justify-center transition-opacity duration-300 opacity-0">
+    <div class="bg-gray-800 rounded-lg p-6 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300">
+        <h3 class="text-xl font-bold text-white mb-2" id="confirm-modal-title">¿Estás seguro?</h3>
+        <p class="text-gray-300 mb-6" id="confirm-modal-message">Esta acción no se puede deshacer.</p>
+        <div class="flex justify-end gap-3">
+            <button id="confirm-modal-cancel" class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded font-medium transition">
+                Cancelar
+            </button>
+            <button id="confirm-modal-accept" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded font-medium transition cursor-pointer">
+                Aceptar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showConfirmModal(title = '¿Estás seguro?', message = 'Esta acción no se puede deshacer.') {
+        return new Promise((resolve) => {
+            const modal = document.getElementById('confirm-modal');
+            const modalContent = modal.querySelector('div.bg-gray-800');
+            const titleEl = document.getElementById('confirm-modal-title');
+            const messageEl = document.getElementById('confirm-modal-message');
+            const btnCancel = document.getElementById('confirm-modal-cancel');
+            const btnAccept = document.getElementById('confirm-modal-accept');
+
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+
+            // Show
+            modal.classList.remove('hidden');
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    modal.classList.remove('opacity-0');
+                    modal.classList.add('opacity-100');
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                });
+            });
+
+            // Cleanup function to animate out and resolve
+            const cleanup = (result) => {
+                modal.classList.remove('opacity-100');
+                modal.classList.add('opacity-0');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+                
+                btnCancel.removeEventListener('click', onCancel);
+                btnAccept.removeEventListener('click', onAccept);
+                
+                resolve(result);
+            };
+
+            const onCancel = () => cleanup(false);
+            const onAccept = () => cleanup(true);
+
+            btnCancel.addEventListener('click', onCancel);
+            btnAccept.addEventListener('click', onAccept);
+        });
+    }
+</script>

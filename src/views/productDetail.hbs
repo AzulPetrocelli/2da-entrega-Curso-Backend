@@ -7,6 +7,9 @@
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' />
     </head>
     <body class='bg-gray-900 min-h-screen text-white'>
+        <!-- Toaster de Notificaciones -->
+        {{> toast}}
+
         <div class='container mx-auto px-4 py-8 max-w-4xl'>
             <a href="/" class="text-blue-400 hover:text-blue-300 mb-8 inline-block transition">
                 <i class="fas fa-arrow-left mr-2"></i> Volver a Productos
@@ -69,14 +72,14 @@
                     });
                     
                     if (response.ok) {
-                        alert('¡Producto agregado al carrito exitosamente!');
+                        showToast('Producto agregado al carrito exitosamente');
                     } else {
                         const data = await response.json();
-                        alert('Error al agregar: ' + data.payload);
+                        showToast('Error al agregar el producto', 'error');
                     }
-                } catch (error) {
+                } catch (error) {   
                     console.error('Error:', error);
-                    alert('Error en red.');
+                    showToast('Error en la red', 'error');
                 }
             }
         </script>
