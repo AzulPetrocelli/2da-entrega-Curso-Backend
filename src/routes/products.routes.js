@@ -11,9 +11,6 @@ router.get('/', (req, res) => pc.getProducts(req, res));
 // Obtener producto por ID
 router.get('/:id', (req, res) => pc.getProductById(req, res));
 
-// Obtener productos por campo
-router.get('/filter/:field', (req, res) => pc.getProductsByField(req, res));
-
 // ==================== RUTAS POST ====================
 
 // Agregar producto

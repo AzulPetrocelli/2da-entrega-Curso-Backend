@@ -95,72 +95,7 @@
             </div>
         </div>
 
-        <script>
-            const removeFromCart = async (cid, pid) => {
-                const confirmed = await showConfirmModal('Eliminar producto', '¿Seguro que deseas remover este producto de su carrito?');
-                if(!confirmed) return;
-                
-                try {
-                    const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
-                        method: 'DELETE'
-                    });
-                    
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        const data = await response.json();
-                        showToast('Error al eliminar producto', 'error');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    showToast('Error de red al eliminar.', 'error');
-                }
-            }
-
-             const updateQuantity = async (cid, pid, newQuantity) => {
-                try {
-                    const response = await fetch(`/api/carts/${cid}/products/${pid}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ quantity: newQuantity })
-                    });
-                    
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        const data = await response.json();
-                        showToast('Error al actualizar cantidad', 'error');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    showToast('Error en la red', 'error');
-                }
-            }
-
-             const clearCart = async (cid) => {
-                const confirmed = await showConfirmModal('Vaciar carrito', '¿Estás completamente seguro de que quieres vaciar todo el carrito?');
-                if(!confirmed) return;
-                
-                try {
-                    const response = await fetch(`/api/carts/${cid}/clear`, { // O DELETE /api/carts/:cid 
-                        method: 'DELETE'
-                    });
-                    
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        // Tratar fallback con el endpoint requerido 'DELETE /:cid' que elimina todo
-                        const res2 = await fetch(`/api/carts/${cid}`, { method: 'DELETE' });
-                        if(res2.ok) window.location.reload();
-                        else showToast('Error al vaciar carrito', 'error');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    showToast('Error en la red al vaciar carrito', 'error');
-                }
-            }
-        </script>
+        <script src="/js/confirmModal.js"></script>
+        <script src="/js/cart.js"></script>
     </body>
 </html>

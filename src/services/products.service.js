@@ -1,12 +1,14 @@
 import Product from '../models/products.model.js';
 import { validateRequiredFields } from '../utils/validation.js';
 
+//Obtengo todos los productos con paginación y filtros
 export const getProductsService = async (req) => {
     let { limit = 10, page = 1, sort, query, name, minPrice, maxPrice, categories, available } = req.query;
 
     const parsedLimit = parseInt(limit);
     const parsedPage = parseInt(page);
 
+    //Objeto donde voy juntar todos los filtros que vengan por query
     let filter = {};
     if (query) {
         filter = { $or: [{ category: query }, { status: query }] };
@@ -20,7 +22,8 @@ export const getProductsService = async (req) => {
         filter.price = {};
         if (minPrice) {
             filter.price.$gte = Number(minPrice);
-        } else if (maxPrice) {
+        } else if (maxPrice) { 
+            //Si no hay minimo pero si maximo, que busque desde 0 hasta el maximo
             filter.price.$gte = 0;
         }
         if (maxPrice) {
@@ -92,12 +95,14 @@ export const getProductsService = async (req) => {
     };
 };
 
+//Obtengo un producto por ID
 export const getProductsServiceById = async (id) => {
     const product = await Product.findById(id);
 
     return product;
 };
 
+//Creo un producto
 export const postProductService = async (productData) => {
     const { name, description, price, code, stock, status, category, thumbnails } = productData;
 
@@ -119,6 +124,7 @@ export const postProductService = async (productData) => {
     return newProduct;
 };
 
+//Actualizo un producto por ID
 export const putProductService = async (pid, updateData) => {
     const { name, description, price, code, stock, status, category, thumbnails } = updateData;
 
@@ -144,6 +150,7 @@ export const putProductService = async (pid, updateData) => {
     return productUpdated;
 };
 
+//Elimino un producto por ID
 export const deleteProductService = async (pid) => {
     const productDeleted = await Product.findByIdAndDelete({ _id: pid });
 

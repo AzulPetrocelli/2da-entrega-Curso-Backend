@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     
+    //Valido que los campos de la url tengan información y los muestro en el formulario
     if(params.has('name')) document.getElementById('filter-name').value = params.get('name');
     if(params.has('minPrice')) document.getElementById('filter-minPrice').value = params.get('minPrice');
     if(params.has('maxPrice')) document.getElementById('filter-maxPrice').value = params.get('maxPrice');
@@ -44,7 +45,7 @@ function applyFilters() {
     const sort = formData.get('sort');
     if (sort && sort !== '') params.append('sort', sort);
 
-    //Redirijo a la página principal con los parámetros de la URL
+    //Redirijo a la página principal con los parámetros en la URL
     window.location.href = `/?${params.toString()}`;
 }
 

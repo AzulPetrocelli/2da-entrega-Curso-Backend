@@ -2,6 +2,7 @@ import * as cs from '../services/carts.service.js';
 import * as ps from '../services/products.service.js';
 import Product from '../models/products.model.js';
 
+//Renderizo la vista index con todos los productos y filtros
 export const RenderProducts = async (req, res) => {
     try {
         const result = await ps.getProductsService(req);
@@ -38,6 +39,7 @@ export const RenderProducts = async (req, res) => {
     }
 }
 
+//Renderizo la vista productDetail con el producto seleccionado
 export const RenderProductDetail = async (req, res) => {
     try {
         const product = await ps.getProductsServiceById(req.params.pid);
@@ -50,6 +52,7 @@ export const RenderProductDetail = async (req, res) => {
     }
 }
 
+//Renderizo la vista cart con el carrito seleccionado
 export const RenderCart = async (req, res) => {
     try {
         const cart = await cs.getCartByIdService(req.params.cid);

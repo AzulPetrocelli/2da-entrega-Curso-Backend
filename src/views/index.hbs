@@ -87,30 +87,6 @@
 		</div>
 
 		<script src="/js/filter.js"></script>
-		<script>
-            // Integración para Agregar al Carrito
-			const CART_ID = "69a7a6b91d450e5387aeedf3"; 
-			async function addToCart(pid) {
-                try {
-                    const response = await fetch(`/api/carts/${CART_ID}/products/${pid}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ productId: pid, quantity: 1 })
-                    });
-                    
-                    if (response.ok) {
-                        showToast('Producto agregado al carrito exitosamente');
-                    } else {
-                        const data = await response.json();
-                        showToast('Error al agregar el producto', 'error');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    showToast('Error en la red', 'error');
-                }
-            }
-		</script>
+		<script src="/js/cart.js"></script>
 	</body>
 </html>

@@ -1,5 +1,6 @@
 import * as ps from '../services/products.service.js';
 
+//Obtengo todos los productos
 export const getProducts = async (req, res) => {
     try {
         const result = await ps.getProductsService(req);
@@ -10,6 +11,7 @@ export const getProducts = async (req, res) => {
     }
 };
 
+//Obtengo un producto por ID
 export const getProductById = async (req, res) => {
     const { id } = req.params;
 
@@ -30,22 +32,7 @@ export const getProductById = async (req, res) => {
     }
 };
 
-export const getProductsByField = async (req, res) => {
-    const { field } = req.params;
-    const { value } = req.query;
-
-    if (!field || !value) {
-        return res.status(400).json({ status: 'error', payload: 'Campo y valor son requeridos' });
-    }
-
-    try {
-        const result = await ps.getProductsService({ query: { [field]: value } });
-        res.status(200).json({ status: 'success', ...result });
-    } catch (error) {
-        res.status(500).json({ status: 'error', payload: error.message });
-    }
-};
-
+//Agrego un producto
 export const postProduct = async (req, res) => {
     try {
         const result = await ps.postProductService(req.body);
@@ -55,6 +42,7 @@ export const postProduct = async (req, res) => {
     }
 };
 
+//Actualizo un producto por ID
 export const putProduct = async (req, res) => {
     const { pid } = req.params;
 
@@ -77,6 +65,7 @@ export const putProduct = async (req, res) => {
     }
 };
 
+//Elimino un producto por ID
 export const deleteProduct = async (req, res) => {
     const { pid } = req.params;
 

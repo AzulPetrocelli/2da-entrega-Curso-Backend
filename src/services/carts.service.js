@@ -1,6 +1,7 @@
 import Cart from '../models/carts.model.js';
 import Product from '../models/products.model.js';
 
+//Obtengo todos los carritos con paginación y populate
 export const getCartsService = async (req) => {
     const { limit = 10, page = 1 } = req.query;
 
@@ -13,7 +14,7 @@ export const getCartsService = async (req) => {
     const carts = await Cart.find()
         .limit(parsedLimit)
         .skip((parsedPage - 1) * parsedLimit)
-        .populate('products.product');
+        .populate("products.product"); //Me trae el producto completo, no solo el ID
 
     return {
         payload: carts,
@@ -26,12 +27,14 @@ export const getCartsService = async (req) => {
     };
 };
 
+//Obtengo un carrito por ID con populate
 export const getCartByIdService = async (id) => {
-    const cart = await Cart.findById(id).populate('products.product');
+    const cart = await Cart.findById(id).populate("products.product");
 
     return cart;
 };
 
+//Creo un carrito
 export const postCartService = async (cartData) => {
     const { products = [] } = cartData;
 
@@ -44,42 +47,7 @@ export const postCartService = async (cartData) => {
     return newCart;
 };
 
-export const putCartService = async (cid, updateData) => {
-    const { products } = updateData;
-
-    if (!products || !Array.isArray(products)) {
-        throw new Error('Los productos deben ser un array');
-    }
-
-    const cartUpdated = await Cart.findByIdAndUpdate({ _id: cid }, { $set: { products } }, { new: true }).populate('products.product');
-
-    return cartUpdated;
-};
-
-export const updateProductQuantityInCartService = async (cid, productId, quantity) => {
-    const cart = await Cart.findById(cid);
-    if (!cart) {
-        throw new Error('Carrito no encontrado');
-    }
-
-    const productInCart = cart.products.find(p => p.product.toString() === productId);
-    
-    if (!productInCart) {
-        throw new Error('Producto no encontrado en el carrito');
-    }
-
-    productInCart.quantity += quantity;
-    await cart.save();
-    
-    return cart;
-};
-
-export const deleteCartService = async (cid) => {
-    const cartDeleted = await Cart.findByIdAndDelete({ _id: cid });
-
-    return cartDeleted;
-};
-
+//Agrego un producto al carrito
 export const addProductToCartService = async (cid, productData) => {
     const { productId, quantity } = productData;
 
@@ -110,6 +78,39 @@ export const addProductToCartService = async (cid, productData) => {
     return updatedCart.populate('products.product');
 };
 
+//Actualizo un carrito por ID
+export const putCartService = async (cid, updateData) => {
+    const { products } = updateData;
+
+    if (!products || !Array.isArray(products)) {
+        throw new Error('Los productos deben ser un array');
+    }
+
+    const cartUpdated = await Cart.findByIdAndUpdate({ _id: cid }, { $set: { products } }, { new: true }).populate('products.product');
+
+    return cartUpdated;
+};
+
+//Actualizo la cantidad de un producto en el carrito
+export const updateProductQuantityInCartService = async (cid, productId, quantity) => {
+    const cart = await Cart.findById(cid);
+    if (!cart) {
+        throw new Error('Carrito no encontrado');
+    }
+
+    const productInCart = cart.products.find(p => p.product.toString() === productId);
+    
+    if (!productInCart) {
+        throw new Error('Producto no encontrado en el carrito');
+    }
+
+    productInCart.quantity += quantity;
+    await cart.save();
+    
+    return cart;
+};
+
+//Elimino un producto del carrito
 export const removeProductFromCartService = async (cid, productId) => {
     if (!productId) {
         throw new Error('productId es requerido');
@@ -120,8 +121,16 @@ export const removeProductFromCartService = async (cid, productId) => {
     return cartUpdated;
 };
 
+//Limpio el carrito
 export const clearCartService = async (cid) => {
     const cartUpdated = await Cart.findByIdAndUpdate({ _id: cid }, { $set: { products: [] } }, { new: true });
 
     return cartUpdated;
+};
+
+//Elimino un carrito por ID
+export const deleteCartService = async (cid) => {
+    const cartDeleted = await Cart.findByIdAndDelete({ _id: cid });
+
+    return cartDeleted;
 };
