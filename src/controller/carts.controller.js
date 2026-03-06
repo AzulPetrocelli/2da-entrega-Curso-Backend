@@ -34,7 +34,7 @@ export const getCartById = async (req, res) => {
 //Creo un carrito
 export const postCart = async (req, res) => {
     try {
-        const result = await cs.postCartService(req.body);
+        const result = await cs.postCartService(req);
         res.status(201).json({ status: 'success', payload: result });
     } catch (error) {
         res.status(500).json({ status: 'error', payload: error.message });
@@ -103,7 +103,7 @@ export const addProductToCart = async (req, res) => {
     }
 
     try {
-        const result = await cs.addProductToCartService(req, req.body);
+        const result = await cs.addProductToCartService(req);
         res.status(200).json({ status: 'success', payload: result });
     } catch (error) {
         res.status(400).json({ status: 'error', payload: error.message });

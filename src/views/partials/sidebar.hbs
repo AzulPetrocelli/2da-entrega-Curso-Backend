@@ -1,80 +1,80 @@
-					<form id='filterForm'>
-						<!-- Buscador -->
-						<div class='mb-4'>
-							<label class='block text-sm font-medium mb-1 text-gray-400'>Buscar por Nombre</label>
-							<div class='relative'>
-								<i class='fas fa-search absolute left-3 top-3 text-gray-500'></i>
-								<input
-									type='text'
-									id='filter-name'
-									name='name'
-									placeholder='Ej: PlayStation...'
-									class='w-full bg-gray-700 text-white rounded pl-10 pr-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
-								/>
-							</div>
-						</div>
+<form id='filterForm'>
+    <!-- Buscador -->
+    <div class='mb-4'>
+        <label class='block text-sm font-medium mb-1 text-gray-400'>Buscar por Nombre</label>
+        <div class='relative'>
+            <i class='fas fa-search absolute left-3 top-3 text-gray-500'></i>
+            <input
+                type='text'
+                id='filter-name'
+                name='name'
+                placeholder='Ej: PlayStation...'
+                class='w-full bg-gray-700 text-white rounded pl-10 pr-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
+            />
+        </div>
+    </div>
 
-						<!-- Ordenar por precio -->
-						<div class='mb-4'>
-							<label class='block text-sm font-medium mb-1 text-gray-400'>Ordenar por Precio</label>
-							<select
-								id='filter-sort'
-								name='sort'
-								class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition appearance-none cursor-pointer'
-							>
-								<option value=''>Seleccione una opción</option>
-								<option value='asc'>Menor a Mayor</option>
-								<option value='desc'>Mayor a Menor</option>
-							</select>
-						</div>
+    <!-- Ordenar por precio -->
+    <div class='mb-4'>
+        <label class='block text-sm font-medium mb-1 text-gray-400'>Ordenar por Precio</label>
+        <select
+            id='filter-sort'
+            name='sort'
+            class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition appearance-none cursor-pointer'
+        >
+            <option value=''>Seleccione una opción</option>
+            <option value='asc'>Menor a Mayor</option>
+            <option value='desc'>Mayor a Menor</option>
+        </select>
+    </div>
 
-						<!-- Rango de precio -->
-						<div class='mb-4'>
-							<label class='block text-sm font-medium mb-1 text-gray-400'>Precio</label>
-							<div class='flex items-center gap-2'>
-								<input
-									type='number'
-									id='filter-minPrice'
-									name='minPrice'
-									placeholder='Min'
-									class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
-								/>
-								<span class='text-gray-500'>-</span>
-								<input
-									type='number'
-									id='filter-maxPrice'
-									name='maxPrice'
-									placeholder='Max'
-									class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
-								/>
-							</div>
-						</div>
+    <!-- Rango de precio -->
+    <div class='mb-4'>
+        <label class='block text-sm font-medium mb-1 text-gray-400'>Precio</label>
+        <div class='flex items-center gap-2'>
+            <input
+                type='number'
+                id='filter-minPrice'
+                name='minPrice'
+                placeholder='Min'
+                class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
+            />
+            <span class='text-gray-500'>-</span>
+            <input
+                type='number'
+                id='filter-maxPrice'
+                name='maxPrice'
+                placeholder='Max'
+                class='w-full bg-gray-700 text-white rounded px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 transition'
+            />
+        </div>
+    </div>
 
-						<!-- Accordion con las categorias -->
-						<div class='mb-4'>
-							<details class='group bg-gray-700 rounded overflow-hidden shadow-inner' open>
-								<summary class='flex justify-between items-center font-medium cursor-pointer p-3 select-none text-gray-300 hover:bg-gray-600 transition'>
-									Categorías
-									<i class='fas fa-chevron-down group-open:rotate-180 transition duration-300'></i>
-								</summary>
-								<div class='p-3 bg-gray-750 border-t border-gray-600 max-h-48 overflow-y-auto space-y-2'>
-									{{#each categories}}
-										<label class='flex items-center space-x-2 cursor-pointer group/label'>
-											<input
-												type='checkbox'
-												name='categories'
-												value='{{this}}'
-												class='filter-category form-checkbox h-4 w-4 text-blue-500 rounded bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
-											/>
-											<span class='text-gray-300 text-sm group-hover/label:text-white transition'>{{this}}</span>
-										</label>
-									{{/each}}
-								</div>
-							</details>
-						</div>
+    <!-- Accordion con las categorias -->
+    <div class='mb-4'>
+        <details class='group bg-gray-700 rounded overflow-hidden shadow-inner' open>
+            <summary class='flex justify-between items-center font-medium cursor-pointer p-3 select-none text-gray-300 hover:bg-gray-600 transition'>
+                Categorías
+                <i class='fas fa-chevron-down group-open:rotate-180 transition duration-300'></i>
+            </summary>
+            <div class='p-3 bg-gray-750 border-t border-gray-600 max-h-48 overflow-y-auto space-y-2'>
+                {{#each categories}}
+                    <label class='flex items-center space-x-2 cursor-pointer group/label'>
+                        <input
+                            type='checkbox'
+                            name='categories'
+                            value='{{this}}'
+                            class='filter-category form-checkbox h-4 w-4 text-blue-500 rounded bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
+                        />
+                        <span class='text-gray-300 text-sm group-hover/label:text-white transition'>{{this}}</span>
+                    </label>
+                {{/each}}
+            </div>
+        </details>
+    </div>
 
-						<!-- Check de Disponibilidad -->
-						<div class='mb-4'>
+    <!-- Check de Disponibilidad -->
+    {{! <div class='mb-4'>
 							<label class='flex items-center space-x-2 cursor-pointer group'>
 								<input
 									type='checkbox'
@@ -85,25 +85,63 @@
 								<span class='text-gray-300 font-medium group-hover:text-white transition'>Solo
 									Disponibles</span>
 							</label>
-						</div>
+						</div> }}
 
-						<!-- Botones -->
-						<div class='flex flex-col gap-2'>
-							<button
-								type='button'
-								onclick='applyFilters()'
-								class='w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded font-semibold transition flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
-							>
-								<i class='fas fa-check'></i>
-								Aplicar Filtros
-							</button>
-							<button
-								type='button'
-								onclick='clearFilters()'
-								class='w-full bg-gray-600 hover:bg-gray-500 text-white py-2 rounded font-semibold transition flex items-center justify-center gap-2 text-sm shadow'
-							>
-								<i class='fas fa-times'></i>
-								Limpiar Filtros
-							</button>
-						</div>
-					</form>
+    <!-- Radio buttons de Disponibilidad -->
+    <div class='mb-4'>
+        <label class='block text-sm font-medium mb-3 text-gray-400'>Disponibilidad</label>
+        <div class='space-y-2'>
+            <label class='flex items-center space-x-2 cursor-pointer group'>
+                <input
+                    type='radio'
+                    id='filter-available-true'
+                    name='available'
+                    value='true'
+                    class='w-4 h-4 text-blue-500 bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
+                />
+                <span class='text-gray-300 group-hover:text-white transition'>Disponibles</span>
+            </label>
+            <label class='flex items-center space-x-2 cursor-pointer group'>
+                <input
+                    type='radio'
+                    id='filter-available-false'
+                    name='available'
+                    value='false'
+                    class='w-4 h-4 text-blue-500 bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
+                />
+                <span class='text-gray-300 group-hover:text-white transition'>No Disponibles</span>
+            </label>
+            <label class='flex items-center space-x-2 cursor-pointer group'>
+                <input
+                    type='radio'
+                    id='filter-available-all'
+                    name='available'
+                    value='all'
+                    checked
+                    class='w-4 h-4 text-blue-500 bg-gray-800 border-gray-600 focus:ring-blue-500 transition'
+                />
+                <span class='text-gray-300 group-hover:text-white transition'>Ambos</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Botones -->
+    <div class='flex flex-col gap-2'>
+        <button
+            type='button'
+            onclick='applyFilters()'
+            class='w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded font-semibold transition flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+        >
+            <i class='fas fa-check'></i>
+            Aplicar Filtros
+        </button>
+        <button
+            type='button'
+            onclick='clearFilters()'
+            class='w-full bg-gray-600 hover:bg-gray-500 text-white py-2 rounded font-semibold transition flex items-center justify-center gap-2 text-sm shadow'
+        >
+            <i class='fas fa-times'></i>
+            Limpiar Filtros
+        </button>
+    </div>
+</form>

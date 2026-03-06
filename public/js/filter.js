@@ -40,7 +40,11 @@ async function applyFilters() {
     });
 
     const available = formData.get('available');
-    if (available === 'on') params.append('available', 'true');
+    if (available === 'true') {
+        params.append('available', 'true');
+    } else if (available === 'false') {
+        params.append('available', 'false');
+    }
 
     const sort = formData.get('sort');
     if (sort && sort !== '') params.append('sort', sort);

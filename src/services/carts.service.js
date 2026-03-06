@@ -17,16 +17,30 @@ export const getCartByIdService = async (id) => {
 };
 
 //Creo un carrito
-export const postCartService = async (cartData) => {
-    const { products = [] } = cartData;
+export const postCartService = async (req) => {
+    const { products = [] } = req.body;
+
+    const processedProducts = [];
+
+    for (const product of products) {
+        const productData = await Product.findById(product.product);
+        if (!productData) {
+            throw new Error(`Producto con ID ${product.product} no encontrado`);
+        }
+
+        processedProducts.push({
+            product: product.product,
+            quantity: product.quantity,
+        });
+    }
 
     const cart = {
-        products,
+        products: processedProducts,
     };
 
     const newCart = await Cart.create(cart);
 
-    return newCart;
+    return newCart.populate('products.product');
 };
 
 //Agrego un producto al carrito
@@ -44,17 +58,23 @@ export const addProductToCartService = async (req) => {
         throw new Error('Producto no encontrado');
     }
 
+    if (!productSelected.price || isNaN(productSelected.price)) {
+        throw new Error('El producto no tiene un precio válido');
+    }
+
     const cart = await Cart.findById(cid);
     if (!cart) {
         throw new Error('Carrito no encontrado');
     }
+    const productInTheCart = cart.products.find((p) => p.product.toString() === pid);
 
-    const existingProduct = cart.products.find((p) => p.product.toString() === pid);
-
-    if (existingProduct) {
-        existingProduct.quantity += quantity;
+    if (productInTheCart) {
+        productInTheCart.quantity += quantity;
     } else {
-        cart.products.push({ product: pid, quantity });
+        cart.products.push({
+            product: pid,
+            quantity,
+        });
     }
 
     const updatedCart = await cart.save();

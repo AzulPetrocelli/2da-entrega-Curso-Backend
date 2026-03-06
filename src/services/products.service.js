@@ -22,7 +22,7 @@ export const getProductsService = async (req) => {
         filter.price = {};
         if (minPrice) {
             filter.price.$gte = Number(minPrice);
-        } else if (maxPrice) { 
+        } else if (maxPrice) {
             //Si no hay minimo pero si maximo, que busque desde 0 hasta el maximo
             filter.price.$gte = 0;
         }
@@ -40,6 +40,8 @@ export const getProductsService = async (req) => {
 
     if (available === 'true' || available === 'on') {
         filter.status = 'true';
+    } else if (available === 'false') {
+        filter.status = 'false';
     }
 
     const totalDocs = await Product.countDocuments(filter);
@@ -68,7 +70,7 @@ export const getProductsService = async (req) => {
         if (maxPrice) qs += `&maxPrice=${maxPrice}`;
         if (categories) {
             const catArr = Array.isArray(categories) ? categories : [categories];
-            catArr.forEach(c => qs += `&categories=${encodeURIComponent(c)}`);
+            catArr.forEach((c) => (qs += `&categories=${encodeURIComponent(c)}`));
         }
         if (available) qs += `&available=${available}`;
         return qs;
@@ -141,11 +143,7 @@ export const putProductService = async (pid, updateData) => {
 
     validateRequiredFields(product, ['name', 'description', 'price', 'code', 'stock', 'status', 'category']);
 
-    const productUpdated = await Product.findByIdAndUpdate(
-        pid,
-        { $set: product },
-        { new: true } 
-    );
+    const productUpdated = await Product.findByIdAndUpdate(pid, { $set: product }, { new: true });
 
     return productUpdated;
 };
