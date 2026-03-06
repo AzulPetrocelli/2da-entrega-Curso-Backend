@@ -16,7 +16,7 @@ export const getProductById = async (req, res) => {
     const { id } = req.params;
 
     if (!id) {
-        return res.status(400).json({ status: 'error', payload: 'ID de producto es requerido'  });
+        return res.status(400).json({ status: 'error', payload: 'ID de producto es requerido' });
     }
 
     try {
@@ -26,7 +26,7 @@ export const getProductById = async (req, res) => {
             return res.status(404).json({ status: 'error', payload: 'Producto no encontrado' });
         }
 
-        res.status(200).json({ status: 'success', ...result });
+        res.status(200).json({ status: 'success', payload: result });
     } catch (error) {
         res.status(500).json({ status: 'error', payload: error.message });
     }
@@ -47,7 +47,7 @@ export const putProduct = async (req, res) => {
     const { pid } = req.params;
 
     if (!pid) {
-        return res.status(400).json({ status: 'error', message: 'ID de producto es requerido'  });
+        return res.status(400).json({ status: 'error', message: 'ID de producto es requerido' });
     }
 
     const product = await ps.getProductsServiceById(pid);

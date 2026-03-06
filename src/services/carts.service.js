@@ -4,7 +4,7 @@ import Product from '../models/products.model.js';
 //Obtengo todos los carritos con paginación y populate
 export const getCartsService = async (req) => {
     //Me trae el producto completo, no solo el ID
-    const carts = await Cart.find().populate('products.product');
+    const carts = await Cart.find();
 
     return carts;
 };
