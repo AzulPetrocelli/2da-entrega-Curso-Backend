@@ -72,7 +72,7 @@ export const updateProductQuantityInCart = async (req, res) => {
     }
 
     if (quantity === undefined || quantity === 0) {
-         return res.status(400).json({ status: 'error', payload: 'Cantidad válida es requerida' });
+        return res.status(400).json({ status: 'error', payload: 'Cantidad válida es requerida' });
     }
 
     try {
@@ -103,7 +103,7 @@ export const addProductToCart = async (req, res) => {
     }
 
     try {
-        const result = await cs.addProductToCartService(cid, req.body);
+        const result = await cs.addProductToCartService(req, req.body);
         res.status(200).json({ status: 'success', payload: result });
     } catch (error) {
         res.status(400).json({ status: 'error', payload: error.message });

@@ -3,33 +3,15 @@ import Product from '../models/products.model.js';
 
 //Obtengo todos los carritos con paginación y populate
 export const getCartsService = async (req) => {
-    const { limit = 10, page = 1 } = req.query;
+    //Me trae el producto completo, no solo el ID
+    const carts = await Cart.find().populate('products.product');
 
-    const parsedLimit = parseInt(limit);
-    const parsedPage = parseInt(page);
-
-    const totalDocs = await Cart.countDocuments();
-    const totalPages = Math.ceil(totalDocs / parsedLimit);
-
-    const carts = await Cart.find()
-        .limit(parsedLimit)
-        .skip((parsedPage - 1) * parsedLimit)
-        .populate("products.product"); //Me trae el producto completo, no solo el ID
-
-    return {
-        payload: carts,
-        totalPages,
-        page: parsedPage,
-        prevPage: parsedPage > 1 ? parsedPage - 1 : null,
-        nextPage: parsedPage < totalPages ? parsedPage + 1 : null,
-        hasPrevPage: parsedPage > 1,
-        hasNextPage: parsedPage < totalPages,
-    };
+    return carts;
 };
 
 //Obtengo un carrito por ID con populate
 export const getCartByIdService = async (id) => {
-    const cart = await Cart.findById(id).populate("products.product");
+    const cart = await Cart.findById(id).populate('products.product');
 
     return cart;
 };
@@ -48,14 +30,16 @@ export const postCartService = async (cartData) => {
 };
 
 //Agrego un producto al carrito
-export const addProductToCartService = async (cid, productData) => {
-    const { productId, quantity } = productData;
+export const addProductToCartService = async (req) => {
+    const { cid, pid } = req.params;
+    const { quantity } = req.body;
 
-    if (!productId || !quantity) {
+    if (!pid || !quantity) {
         throw new Error('productId y quantity son requeridos');
     }
 
-    const productSelected = await Product.findById(productId);
+    const productSelected = await Product.findById(pid);
+
     if (!productSelected) {
         throw new Error('Producto no encontrado');
     }
@@ -65,12 +49,12 @@ export const addProductToCartService = async (cid, productData) => {
         throw new Error('Carrito no encontrado');
     }
 
-    const existingProduct = cart.products.find((p) => p.product.toString() === productId);
+    const existingProduct = cart.products.find((p) => p.product.toString() === pid);
 
     if (existingProduct) {
         existingProduct.quantity += quantity;
     } else {
-        cart.products.push({ product: productId, quantity });
+        cart.products.push({ product: pid, quantity });
     }
 
     const updatedCart = await cart.save();
@@ -98,15 +82,15 @@ export const updateProductQuantityInCartService = async (cid, productId, quantit
         throw new Error('Carrito no encontrado');
     }
 
-    const productInCart = cart.products.find(p => p.product.toString() === productId);
-    
+    const productInCart = cart.products.find((p) => p.product.toString() === productId);
+
     if (!productInCart) {
         throw new Error('Producto no encontrado en el carrito');
     }
 
     productInCart.quantity += quantity;
     await cart.save();
-    
+
     return cart;
 };
 
