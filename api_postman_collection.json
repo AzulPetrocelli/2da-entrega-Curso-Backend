@@ -40,14 +40,36 @@
                   "disabled": true
                 },
                 {
-                  "key": "query",
-                  "value": "electronica",
-                  "description": "Término a buscar (categoría o status)",
+                  "key": "page",
+                  "value": "1",
                   "disabled": true
                 },
                 {
-                  "key": "page",
-                  "value": "1",
+                  "key": "query",
+                  "value": "electronica",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "8000",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "4000",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "name",
+                  "value": "mouse",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "available",
+                  "value": "false",
                   "disabled": true
                 }
               ]
@@ -75,7 +97,7 @@
               "variable": [
                 {
                   "key": "pid",
-                  "value": "69a633e2543750a3f6359e7a"
+                  "value": "69a633cc140cefbaf272f699"
                 }
               ]
             }
@@ -123,7 +145,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"Producto Actualizado\",\n    \"description\": \"Nueva descripción\",\n    \"price\": 1200,\n    \"code\": \"PROD001\",\n    \"stock\": 40,\n    \"status\": true,\n    \"category\": \"electronica\",\n    \"thumbnails\": \"foto.png\"\n}"
+              "raw": "{\n    \"name\": \"Producto Actualizado\",\n    \"description\": \"Nueva descripción\",\n    \"price\": 1200,\n    \"code\": \"PROD001\",\n    \"stock\": 40,\n    \"status\": false,\n    \"category\": \"electronica\",\n    \"thumbnails\": \"foto.png\"\n}"
             },
             "url": {
               "raw": "http://localhost:3000/api/products/:pid",
@@ -140,7 +162,7 @@
               "variable": [
                 {
                   "key": "pid",
-                  "value": "69a633e2543750a3f6359e7a"
+                  "value": "69a633cc140cefbaf272f699"
                 }
               ]
             }
@@ -219,7 +241,7 @@
               "variable": [
                 {
                   "key": "cid",
-                  "value": "69a7a6b91d450e5387aeedf3"
+                  "value": "69ab568f2e7a301749745cfc"
                 }
               ]
             }
@@ -233,7 +255,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "",
+              "raw": "{\n    \"products\": [\n        {\n            \"product\": \"69a633cc140cefbaf272f699\",\n            \"quantity\": 2\n        }, \n        {\n            \"product\": \"69a638df547ca4c45dc70825\",\n            \"quantity\": 2\n        }\n    ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -267,10 +289,10 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"productId\": \"REEMPLAZAR_CON_ID_PRODUCTO\",\n    \"quantity\": 1\n}"
+              "raw": "{\n    \"quantity\": 2\n}"
             },
             "url": {
-              "raw": "http://localhost:3000/api/:cid/products/:pid",
+              "raw": "http://localhost:3000/api/carts/:cid/products/:pid",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -278,6 +300,7 @@
               "port": "3000",
               "path": [
                 "api",
+                "carts",
                 ":cid",
                 "products",
                 ":pid"
@@ -285,11 +308,11 @@
               "variable": [
                 {
                   "key": "cid",
-                  "value": "69a643de547ca4c45dc70859"
+                  "value": "69ab568f2e7a301749745cfc"
                 },
                 {
                   "key": "pid",
-                  "value": "69a633e2543750a3f6359e7a"
+                  "value": "69a633cc140cefbaf272f699"
                 }
               ]
             }
@@ -344,7 +367,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"quantity\": 5\n}"
+              "raw": "{\n    \"quantity\": 2\n}"
             },
             "url": {
               "raw": "http://localhost:3000/api/carts/:cid/products/:pid",
@@ -363,11 +386,11 @@
               "variable": [
                 {
                   "key": "cid",
-                  "value": "69a7a6b91d450e5387aeedf3"
+                  "value": "69a643de547ca4c45dc70859"
                 },
                 {
                   "key": "pid",
-                  "value": "69a7951ffbe8ee08f4ae0157"
+                  "value": "69a633cc140cefbaf272f699"
                 }
               ]
             }
@@ -396,11 +419,11 @@
               "variable": [
                 {
                   "key": "cid",
-                  "value": "REEMPLAZAR_CON_ID_CARRITO"
+                  "value": "69ab568f2e7a301749745cfc"
                 },
                 {
                   "key": "pid",
-                  "value": "REEMPLAZAR_CON_ID_PRODUCTO"
+                  "value": "69a638df547ca4c45dc7082a"
                 }
               ]
             }
@@ -428,7 +451,7 @@
               "variable": [
                 {
                   "key": "cid",
-                  "value": "REEMPLAZAR_CON_ID_CARRITO"
+                  "value": "69ab568f2e7a301749745cfc"
                 }
               ]
             }
@@ -455,7 +478,7 @@
               "variable": [
                 {
                   "key": "cid",
-                  "value": "REEMPLAZAR_CON_ID_CARRITO"
+                  "value": "69ab61af2cbdfc275dd9a599"
                 }
               ]
             }

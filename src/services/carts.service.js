@@ -112,12 +112,10 @@ export const updateProductQuantityInCartService = async (cid, productId, quantit
 };
 
 //Elimino un producto del carrito
-export const removeProductFromCartService = async (cid, productId) => {
-    if (!productId) {
-        throw new Error('productId es requerido');
-    }
+export const removeProductFromCartService = async (req, res) => {
+    const { cid, pid } = req.params;
 
-    const cartUpdated = await Cart.findByIdAndUpdate({ _id: cid }, { $pull: { products: { product: productId } } }, { new: true }).populate('products.product');
+    const cartUpdated = await Cart.findByIdAndUpdate(cid, { $pull: { products: { product: pid } } }, { new: true }).populate('products.product');
 
     return cartUpdated;
 };

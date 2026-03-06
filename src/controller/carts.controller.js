@@ -1,4 +1,5 @@
 import * as cs from '../services/carts.service.js';
+import * as ps from '../services/products.service.js';
 
 //Obtengo todos los carritos
 export const getCarts = async (req, res) => {
@@ -115,16 +116,22 @@ export const addProductToCart = async (req, res) => {
 export const removeProductFromCart = async (req, res) => {
     const { cid, pid } = req.params;
 
-    if (!cid || !pid) {
-        return res.status(400).json({ status: 'error', payload: 'ID de carrito y producto son requeridos' });
-    }
+    if (!cid || !pid) return res.status(400).json({ status: 'error', payload: 'ID de carrito y producto son requeridos' });
+
+    const cart = await cs.getCartByIdService(cid);
+
+    if (!cart) return res.status(404).json({ status: 'error', payload: 'Carrito no encontrado' });
+
+    const product = await ps.getProductsServiceById(pid);
+
+    if (!product) return res.status(404).json({ status: 'error', payload: 'El producto no encontrado' });
+
+    const productInCart = cart.products.find((p) => p.product._id.toString() === pid);
+
+    if (!productInCart) return res.status(404).json({ status: 'error', payload: 'El producto no se encuentra en el carrito' });
 
     try {
-        const result = await cs.removeProductFromCartService(cid, pid);
-
-        if (!result) {
-            return res.status(404).json({ status: 'error', payload: 'Carrito no encontrado' });
-        }
+        const result = await cs.removeProductFromCartService(req, res);
 
         res.status(200).json({ status: 'success', payload: result });
     } catch (error) {
