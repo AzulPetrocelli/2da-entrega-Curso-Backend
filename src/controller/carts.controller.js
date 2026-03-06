@@ -44,17 +44,18 @@ export const postCart = async (req, res) => {
 //Actualizo un carrito completo por ID
 export const putCart = async (req, res) => {
     const { cid } = req.params;
+    const { products } = req.body;
 
-    if (!cid) {
-        return res.status(400).json({ status: 'error', payload: 'ID de carrito es requerido' });
-    }
+    if (!cid) return res.status(400).json({ status: 'error', payload: 'ID de carrito es requerido' });
+
+    const cartExists = await cs.getCartByIdService(cid);
+
+    if (!cartExists) return res.status(404).json({ status: 'error', payload: 'Carrito no encontrado' });
+
+    if (!products || !Array.isArray(products)) return res.status(400).json({ status: 'error', payload: 'Los productos deben ser un array' });
 
     try {
-        const result = await cs.putCartService(cid, req.body);
-
-        if (!result) {
-            return res.status(404).json({ status: 'error', payload: 'Carrito no encontrado' });
-        }
+        const result = await cs.putCartService(req, res);
 
         res.status(200).json({ status: 'success', payload: result });
     } catch (error) {

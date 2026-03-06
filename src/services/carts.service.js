@@ -83,14 +83,11 @@ export const addProductToCartService = async (req) => {
 };
 
 //Actualizo un carrito por ID
-export const putCartService = async (cid, updateData) => {
-    const { products } = updateData;
+export const putCartService = async (req, res) => {
+    const { cid } = req.params;
+    const { products } = req.body;
 
-    if (!products || !Array.isArray(products)) {
-        throw new Error('Los productos deben ser un array');
-    }
-
-    const cartUpdated = await Cart.findByIdAndUpdate({ _id: cid }, { $set: { products } }, { new: true }).populate('products.product');
+    const cartUpdated = await Cart.findByIdAndUpdate(cid, { $set: { products: products } }, { new: true });
 
     return cartUpdated;
 };
