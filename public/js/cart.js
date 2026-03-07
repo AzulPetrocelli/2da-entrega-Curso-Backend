@@ -9,6 +9,7 @@ const removeProductView = (pid) => {
     const remainingProducts = document.querySelectorAll('[id^="product-"]');
     if (remainingProducts.length === 0) {
         removeCartView();
+        updateCartTotal();
     }
 };
 
@@ -17,9 +18,31 @@ const removeCartView = () => {
     const containerProducts = document.getElementById('cart-products-container');
     const cartEmptyAlert = document.getElementById('cart-empty-alert');
 
-    containerProducts.remove();
-    cartEmptyAlert.classList.remove('invisible');
+    containerProducts.classList.add('hidden');
+    cartEmptyAlert.classList.remove('hidden');
 };
+
+//Actualizo el precio total de todo el carrito
+const updateCartTotal = () => {
+    let total = 0;
+
+    const totalElement = document.getElementById('cart-total');
+    const products = document.querySelectorAll('[id^="product-"]');
+
+    products.forEach((product) => {
+        const price = parseFloat(product.dataset.price);
+        const quantity = parseInt(product.querySelector('[data-quantity]').value);
+
+        total += price * quantity;
+    });
+
+    totalElement.textContent = `$${total.toFixed(2)}`;
+};
+
+//Cuando carga la pagina calculo el total del carrito
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartTotal();
+});
 
 const removeProductFromCart = async (cid, pid) => {
     const confirmed = await showConfirmModal('Eliminar producto', '¿Seguro que deseas remover este producto de su carrito?');
@@ -34,7 +57,6 @@ const removeProductFromCart = async (cid, pid) => {
             removeProductView(pid);
             showToast('Producto eliminado', 'success');
         } else {
-            const data = await response.json();
             showToast('Error al eliminar producto', 'error');
         }
     } catch (error) {
@@ -61,12 +83,17 @@ const updateProductQuantity = async (cid, pid, quantity) => {
             let oldQuantity = parseInt(quantytyView.value);
             let newQuantity = oldQuantity + quantity;
 
-            if (newQuantity === 0) removeProductView(pid);
-            else quantytyView.value = newQuantity;
+            if (newQuantity === 0) {
+                removeProductView(pid);
+            } else {
+                quantytyView.value = newQuantity;
+            }
         } else {
             const data = await response.json();
             showToast('Error al actualizar cantidad', 'error');
         }
+
+        updateCartTotal();
     } catch (error) {
         console.error('Error:', error);
         showToast('Error en la red', 'error');
