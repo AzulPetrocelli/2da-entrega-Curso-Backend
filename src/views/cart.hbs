@@ -21,12 +21,12 @@
                 </a>
             </div>
 
-            <div class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl p-6">
+            <div id="cart-products-container" class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl p-6">
                 {{#if cart.products.length}}
                     <div class="space-y-4">
                         {{#each cart.products}}
                             {{#if this.product}}
-                                <div class="flex items-center justify-between bg-gray-700 p-4 rounded-lg">
+                                <div id="product-{{this.product._id}}" class="flex items-center justify-between bg-gray-700 p-4 rounded-lg">
                                     <div class="flex items-center space-x-4 w-1/2">
                                         <div class="w-16 h-16 bg-gray-800 rounded flex items-center justify-center shrink-0">
                                             {{#if this.product.thumbnails}}
@@ -49,7 +49,7 @@
                                     <div class="w-1/6 text-center">
                                         <p class="text-sm text-gray-400 mb-1">Cantidad</p>
                                         <div class="flex items-center justify-center space-x-2">
-                                            <button onclick="updateQuantity('{{../cart._id}}', '{{this.product._id}}', - 1)" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-white font-bold transition">
+                                            <button onclick="updateProductQuantity('{{../cart._id}}', '{{this.product._id}}', - 1)" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-white font-bold transition">
                                                 -
                                             </button>
                                             <input type="number" readonly value="{{this.quantity}}" class="w-12 text-center bg-gray-900 border border-gray-700 rounded py-1 font-mono outline-none">
@@ -60,7 +60,7 @@
                                     </div>
 
                                     <div class="w-1/6 text-right">
-                                        <button onclick="removeFromCart('{{../cart._id}}', '{{this.product._id}}')" class="text-red-400 hover:text-red-300 transition p-2">
+                                        <button onclick="removeProductFromCart('{{../cart._id}}', '{{this.product._id}}')" class="text-red-400 hover:text-red-300 transition p-2">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -82,17 +82,18 @@
                             Proceder al Pago
                         </button>
                     </div>
-                {{else}}
-                    <div class='text-center py-16'>
-                        <i class='fas fa-shopping-basket text-gray-600 text-7xl mb-6'></i>
-                        <p class='text-gray-400 text-2xl mb-2'>Tu carrito está vacío</p>
-                        <p class='text-gray-500 mb-8'>¡Agrega productos para comenzar!</p>
-                        <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition">
-                            Explorar Productos
-                        </a>
-                    </div>
                 {{/if}}
             </div>
+            
+            <div id="cart-empty-alert" class="bg-gray-800 rounded-xl overflow-hidden shadow-2xl p-6 text-center py-16 {{#if cart.products.length}}invisible{{/if}}">
+                <i class='fas fa-shopping-basket text-gray-600 text-7xl mb-6'></i>
+                <p class='text-gray-400 text-2xl mb-2'>Tu carrito está vacío</p>
+                <p class='text-gray-500 mb-8'>¡Agrega productos para comenzar!</p>
+                <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold transition">
+                    Explorar Productos
+                </a>
+            </div>
+            
         </div>
 
         <script src="/js/confirmModal.js"></script>
